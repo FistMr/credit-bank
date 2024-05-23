@@ -5,19 +5,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreditDto {
 
-    private String amount;
-    private String term;
-    private String monthlyPayment;
-    private String rate;
-    private String psk;
-    private String isInsuranceEnabled;
-    private String isSalaryClient;
-    private String paymentSchedule;
+    private BigDecimal amount;
+    private Integer term;
+    private BigDecimal monthlyPayment;
+    private BigDecimal rate;
+    private BigDecimal psk;
+    private Boolean isInsuranceEnabled;
+    private Boolean isSalaryClient;
+    private List<PaymentScheduleElementDto> paymentSchedule;
 
 }

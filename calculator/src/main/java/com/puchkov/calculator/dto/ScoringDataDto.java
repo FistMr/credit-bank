@@ -1,9 +1,14 @@
 package com.puchkov.calculator.dto;
 
+import com.puchkov.calculator.dto.enums.Gender;
+import com.puchkov.calculator.dto.enums.MaritalStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -11,22 +16,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ScoringDataDto {
 
-    private String amount;
-    private String term;
+    private BigDecimal amount;
+    private Integer term;
     private String firstName;
     private String lastName;
     private String middleName;
-    private Enum gender;
-    private String birthdate;
+    private Gender gender;
+    private LocalDate birthdate;
     private String passportSeries;
     private String passportNumber;
-    private String passportIssueDate;
+    private LocalDate passportIssueDate;
     private String passportIssueBranch;
-    private Enum maritalStatus;
-    private String dependentAmount;
+    private MaritalStatus maritalStatus;
+    private Integer dependentAmount;
     private EmploymentDto employment;
     private String accountNumber;
-    private String isInsuranceEnabled;
-    private String isSalaryClient;
+    private Boolean isInsuranceEnabled;
+    private Boolean isSalaryClient;
 
 }
