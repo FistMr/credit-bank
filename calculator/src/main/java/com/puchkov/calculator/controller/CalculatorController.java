@@ -27,22 +27,23 @@ public class CalculatorController {
     private final CalculatorService calculatorService;
 
     @Operation(
-            summary = "расчёт возможных условий кредита",
-            description = "Request - LoanStatementRequestDto, response - List<LoanOfferDto>"
+            summary = "расчёт возможных условий кредита"
     )
     @PostMapping("/offers")
     public List<LoanOfferDto> getOfferDtoList(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto){
-        log.info("CalculatorController: getOfferDtoList request: {}",loanStatementRequestDto);
+        log.info("CalculatorController: getOfferDtoList(Entrance) request: {}",loanStatementRequestDto);
         List<LoanOfferDto> offerList = calculatorService.getOfferList(loanStatementRequestDto);
-        log.info("CalculatorController: getOfferDtoList response : {}", offerList);
+        log.info("CalculatorController: getOfferDtoList(exit) response : {}", offerList);
         return offerList;
     }
     @Operation(
-            summary = "валидация присланных данных + скоринг данных + полный расчет параметров кредита",
-            description = "Request - ScoringDataDto, response CreditDto."
+            summary = "валидация присланных данных + скоринг данных + полный расчет параметров кредита"
     )
     @PostMapping("/calc")
     public CreditDto getCreditDto(@Valid @RequestBody ScoringDataDto scoringDataDto){
-        return calculatorService.calcCreditDto(scoringDataDto);
+        log.info("CalculatorController: getCreditDto(Entrance) request: {}",scoringDataDto);
+        CreditDto creditDto = calculatorService.calcCreditDto(scoringDataDto);
+        log.info("CalculatorController: getCreditDto(exit) request: {}",creditDto);
+        return creditDto;
     }
 }

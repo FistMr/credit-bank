@@ -2,6 +2,7 @@ package com.puchkov.calculator.util;
 
 import com.puchkov.calculator.dto.PaymentScheduleElementDto;
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -12,10 +13,13 @@ import java.util.List;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 @UtilityClass
+@Slf4j
 public class PaymentScheduleProcessor {
 
     public List<PaymentScheduleElementDto> createPaymentSchedule(Integer term, BigDecimal monthlyPayment,
                                                                    BigDecimal amount, BigDecimal rate) {
+        log.info("PaymentScheduleProcessor: createPaymentSchedule(Entrance) : parameters: term = {}, monthlyPayment = {}, amount = {}, rate = {}"
+                , term,  monthlyPayment,amount,  rate);
         BigDecimal debtPayment = BigDecimal.ZERO;
         BigDecimal remainingDebt = amount;
         List<PaymentScheduleElementDto> paymentSchedule = new ArrayList<>();
@@ -49,6 +53,7 @@ public class PaymentScheduleProcessor {
             debtPayment = BigDecimal.ZERO;
 
         }
+        log.info("CalculatorServiceImpl: calcCreditDto(exit) response:  paymentSchedule = {}", paymentSchedule);
         return paymentSchedule;
     }
 }

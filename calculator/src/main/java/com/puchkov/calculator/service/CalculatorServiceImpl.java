@@ -74,10 +74,12 @@ public class CalculatorServiceImpl implements CalculatorService {
 
     @Override
     public CreditDto calcCreditDto(ScoringDataDto scoringDataDto) {
+        log.info("CalculatorServiceImpl: calcCreditDto(Entrance) parameters: scoringDataDto = {}", scoringDataDto);
         BigDecimal rate = scoringService.score(scoringDataDto);
         BigDecimal amount = scoringDataDto.getAmount();
 
         if (scoringDataDto.getIsInsuranceEnabled()) {
+            log.info("CalculatorServiceImpl: calcCreditDto: the amount has been increased scoringDataDto: amount = {}", amount);
             amount = amount.add(BigDecimal.valueOf(100_000));//todo подумать о прогрессивной зависимости
         }
 
@@ -85,10 +87,11 @@ public class CalculatorServiceImpl implements CalculatorService {
 
         BigDecimal psk = monthlyPayment.multiply(BigDecimal.valueOf(scoringDataDto.getTerm()));
 
+
         List<PaymentScheduleElementDto> paymentSchedule = PaymentScheduleProcessor.createPaymentSchedule
                 (scoringDataDto.getTerm(), monthlyPayment, amount, rate);
 
-        return CreditDto.builder()
+        CreditDto creditDto = CreditDto.builder()
                 .amount(amount.setScale(2, RoundingMode.UP))
                 .term(scoringDataDto.getTerm())
                 .monthlyPayment(monthlyPayment.setScale(2, RoundingMode.UP))
@@ -98,6 +101,8 @@ public class CalculatorServiceImpl implements CalculatorService {
                 .isSalaryClient(scoringDataDto.getIsSalaryClient())
                 .paymentSchedule(paymentSchedule)
                 .build();
+        log.info("CalculatorServiceImpl: calcCreditDto(exit) response: creditDto = {}", creditDto);
+        return creditDto;
 
     }
 }
