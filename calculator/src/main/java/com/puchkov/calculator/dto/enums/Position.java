@@ -6,10 +6,8 @@ public enum Position {
     MID_LEVEL ,
     SENIOR_LEVEL,
     MANAGER,
-    EXECUTIVE,
     DIRECTOR,
     OWNER,
     FREELANCER,
-    OTHER;
 
 }

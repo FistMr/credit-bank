@@ -8,6 +8,6 @@ public enum EmploymentStatus {
     UNEMPLOYED,
     RETIRED,
     STUDENT,
-    OTHER;
+    BUSINESSMAN
 
 }
