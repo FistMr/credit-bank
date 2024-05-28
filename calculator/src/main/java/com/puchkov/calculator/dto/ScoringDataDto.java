@@ -2,6 +2,7 @@ package com.puchkov.calculator.dto;
 
 import com.puchkov.calculator.dto.enums.Gender;
 import com.puchkov.calculator.dto.enums.MaritalStatus;
+import com.puchkov.calculator.validation.Adult;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,6 +51,7 @@ public class ScoringDataDto {
 
     @Past
     @NotNull
+    @Adult(message = "возраст меньше 18 лет")
     @Schema(example = "2001-11-06")
     private LocalDate birthdate;
 

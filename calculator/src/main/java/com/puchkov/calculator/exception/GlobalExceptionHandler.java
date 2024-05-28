@@ -4,9 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,19 +24,24 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler
     public ResponseEntity<ValidationErrorResponse> handleValidationError(
-            MethodArgumentNotValidException validationErrorResponse){
-        final List<Violation> violationList =validationErrorResponse.getBindingResult()
+            MethodArgumentNotValidException validationErrorResponse) {
+        final List<Violation> violationList = validationErrorResponse.getBindingResult()
                 .getFieldErrors().stream().map(error -> new Violation(error.getField(), error.getDefaultMessage()))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(new ValidationErrorResponse(violationList), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<CreditRefusal> handleHttpMessageNotReadableException(
-            HttpMessageNotReadableException httpMessageNotReadableException){
-        CreditRefusal incorrectValue = new CreditRefusal();
-        incorrectValue.setInfo(httpMessageNotReadableException.getMessage());
-        return new ResponseEntity<>(incorrectValue, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Object> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+
+        Throwable mostSpecificCause = ex.getMostSpecificCause();
+        String errorMessage;
+        if (mostSpecificCause.toString().contains("DateTimeParseException")) {
+            errorMessage = "Неверный формат даты, ожидается формат yyyy-MM-dd.";
+        } else {
+            errorMessage = "Ошибка чтения JSON: " + ex.getMessage();
+        }
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 
 }

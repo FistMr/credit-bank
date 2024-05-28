@@ -1,6 +1,7 @@
 package com.puchkov.calculator.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.puchkov.calculator.validation.Adult;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,6 +51,8 @@ public class LoanStatementRequestDto {
 
     @Past
     @NotNull
+    @Adult(message = "возраст меньше 18 лет")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
     @Schema(example = "2001-11-06")
     private LocalDate birthdate;
 
