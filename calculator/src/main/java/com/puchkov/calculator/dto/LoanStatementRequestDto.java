@@ -1,6 +1,5 @@
 package com.puchkov.calculator.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.puchkov.calculator.validation.Adult;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -29,18 +28,18 @@ public class LoanStatementRequestDto {
     private Integer term;
 
     @NotBlank
-    @Size(min = 2,max = 30)
+    @Size(min = 2, max = 30)
     @Pattern(regexp = "^[a-zA-Z]+$", message = "Имя - от 2 до 30 латинских букв.")
     @Schema(example = "Pavel")
     private String firstName;
 
-    @Size(min = 2,max = 30)
+    @Size(min = 2, max = 30)
     @Pattern(regexp = "^[a-zA-Z]+$", message = "Фамилия - от 2 до 30 латинских букв.")
     @Schema(example = "Ilyich")
     private String lastName;
 
     @NotBlank
-    @Size(min = 2,max = 30)
+    @Size(min = 2, max = 30)
     @Pattern(regexp = "^[a-zA-Z]+$", message = "Отчество - от 2 до 30 латинских букв.")
     @Schema(example = "Puchkov")
     private String middleName;
