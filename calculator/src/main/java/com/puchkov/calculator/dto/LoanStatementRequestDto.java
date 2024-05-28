@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class LoanStatementRequestDto {
 
     @NotNull
-    @DecimalMin(value = "30000.0", message = "Сумма кредита - действительно число, большее или равное 30000.")
+    @DecimalMin(value = "30000.0", message = "Сумма кредита - действительное число, большее или равное 30000.")
     @Digits(integer = 10, fraction = 2)
     private BigDecimal amount;
 
