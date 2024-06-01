@@ -18,7 +18,7 @@ public class PaymentScheduleProcessor {
 
     public List<PaymentScheduleElementDto> createPaymentSchedule(Integer term, BigDecimal monthlyPayment,
                                                                    BigDecimal amount, BigDecimal rate) {
-        log.info("PaymentScheduleProcessor: createPaymentSchedule(Entrance) : parameters: term = {}, monthlyPayment = {}, amount = {}, rate = {}"
+        log.debug("PaymentScheduleProcessor: createPaymentSchedule(Entrance) : parameters: term = {}, monthlyPayment = {}, amount = {}, rate = {}"
                 , term,  monthlyPayment,amount,  rate);
         BigDecimal debtPayment = BigDecimal.ZERO;
         BigDecimal remainingDebt = amount;
@@ -53,7 +53,7 @@ public class PaymentScheduleProcessor {
             debtPayment = BigDecimal.ZERO;
 
         }
-        log.info("CalculatorServiceImpl: calcCreditDto(exit) response:  paymentSchedule = {}", paymentSchedule);
+        log.debug("CalculatorServiceImpl: calcCreditDto(exit) response:  paymentSchedule = {}", paymentSchedule);
         return paymentSchedule;
     }
 }

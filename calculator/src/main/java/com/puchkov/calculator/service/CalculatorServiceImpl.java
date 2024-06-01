@@ -1,7 +1,8 @@
 package com.puchkov.calculator.service;
 
-import com.puchkov.calculator.config.ScoringProperties;
+import com.puchkov.calculator.config.Properties;
 import com.puchkov.calculator.dto.*;
+import com.puchkov.calculator.util.InsuranceProcessor;
 import com.puchkov.calculator.util.MonthlyPaymentProcessor;
 import com.puchkov.calculator.util.PaymentScheduleProcessor;
 import lombok.RequiredArgsConstructor;
@@ -19,36 +20,32 @@ import java.util.UUID;
 @Slf4j
 public class CalculatorServiceImpl implements CalculatorService {
 
-    private final ScoringService scoringService;
-    private final ScoringProperties scoringProperties;
+    private final ScoringServiceImpl scoringService;
+    private final Properties properties;
 
     @Override
     public List<LoanOfferDto> getOfferList(LoanStatementRequestDto loanStatementRequestDto) {
         log.info("CalculatorServiceImpl: getOfferList(Entrance) parameters : {}", loanStatementRequestDto);
         List<LoanOfferDto> loanOfferDtoList = new ArrayList<>();
-        Boolean[] insuranceOptions = {false, true};
-        Boolean[] salaryClientOptions = {false, true};
 
-        for (boolean isInsuranceEnabled : insuranceOptions) {
-            for (boolean isSalaryClient : salaryClientOptions) {
-                LoanOfferDto loanOfferDto = createOfferDto(loanStatementRequestDto, isInsuranceEnabled, isSalaryClient);
-                log.info("CalculatorServiceImpl: getOfferList addLoanOfferToList loanOfferDtoList : {}", loanOfferDtoList);
-                loanOfferDtoList.add(loanOfferDto);
-            }
-        }
+        loanOfferDtoList.add(createOfferDto(loanStatementRequestDto, false, false));
+        loanOfferDtoList.add(createOfferDto(loanStatementRequestDto, false, true));
+        loanOfferDtoList.add(createOfferDto(loanStatementRequestDto, true, false));
+        loanOfferDtoList.add(createOfferDto(loanStatementRequestDto, true, true));
+
         log.info("CalculatorServiceImpl: getOfferList(exit) response : {}", loanOfferDtoList);
         return loanOfferDtoList;
     }
 
-    private LoanOfferDto createOfferDto(LoanStatementRequestDto requestDto, Boolean isInsuranceEnasbled, Boolean isSalaryClient) {
-        log.info("CalculatorServiceImpl: createOfferDto(Entrance) parameters: requestDto = {}" +
-                ",isInsuranceEnasbled = {}, isSalaryClient = {}",requestDto,isInsuranceEnasbled,isSalaryClient );
-        BigDecimal amount = requestDto.getAmount();
-        BigDecimal rate = new BigDecimal(scoringProperties.getBaseRate());
+    private LoanOfferDto createOfferDto(LoanStatementRequestDto requestDto, Boolean isInsuranceEnabled, Boolean isSalaryClient) {
+        log.debug("CalculatorServiceImpl: createOfferDto(Entrance) parameters: requestDto = {}, isInsuranceEnasbled = {}, isSalaryClient = {}", requestDto, isInsuranceEnabled, isSalaryClient);
 
-        if (isInsuranceEnasbled) {
+        BigDecimal amount = requestDto.getAmount();
+        BigDecimal rate = new BigDecimal(properties.getBaseRate());
+
+        if (isInsuranceEnabled) {
             rate = rate.subtract(BigDecimal.valueOf(3));
-            amount = requestDto.getAmount().add(BigDecimal.valueOf(100_000));//todo подумать о прогрессивной зависимости
+            amount = requestDto.getAmount().add(InsuranceProcessor.calculateInsuranceCost(requestDto.getBirthdate(), properties));
         }
 
         if (isSalaryClient) {
@@ -65,31 +62,32 @@ public class CalculatorServiceImpl implements CalculatorService {
                 .term(requestDto.getTerm())
                 .monthlyPayment(monthlyPayment.setScale(2, RoundingMode.UP))
                 .rate(rate)
-                .isInsuranceEnabled(isInsuranceEnasbled)
+                .isInsuranceEnabled(isInsuranceEnabled)
                 .isSalaryClient(isSalaryClient)
                 .build();
-        log.info("CalculatorServiceImpl: createOfferDto(exit) response: requestDto = {}", loanOfferDto);
+        log.debug("CalculatorServiceImpl: createOfferDto(exit) response: requestDto = {}", loanOfferDto);
         return loanOfferDto;
     }
 
     @Override
     public CreditDto calcCreditDto(ScoringDataDto scoringDataDto) {
         log.info("CalculatorServiceImpl: calcCreditDto(Entrance) parameters: scoringDataDto = {}", scoringDataDto);
-        BigDecimal rate = scoringService.score(scoringDataDto);
+
+        scoringService.score(scoringDataDto);
+        BigDecimal rate = scoringService.getRateOnEmployment(scoringDataDto);
+
         BigDecimal amount = scoringDataDto.getAmount();
 
         if (scoringDataDto.getIsInsuranceEnabled()) {
-            log.info("CalculatorServiceImpl: calcCreditDto: the amount has been increased scoringDataDto: amount = {}", amount);
-            amount = amount.add(BigDecimal.valueOf(100_000));//todo подумать о прогрессивной зависимости
+            amount = amount.add(InsuranceProcessor.calculateInsuranceCost(scoringDataDto.getBirthdate(), properties));
+            log.debug("CalculatorServiceImpl: calcCreditDto: the amount has been increased scoringDataDto: amount = {}", amount);
         }
 
         BigDecimal monthlyPayment = MonthlyPaymentProcessor.calculate(amount, scoringDataDto.getTerm(), rate);
 
         BigDecimal psk = monthlyPayment.multiply(BigDecimal.valueOf(scoringDataDto.getTerm()));
 
-
-        List<PaymentScheduleElementDto> paymentSchedule = PaymentScheduleProcessor.createPaymentSchedule
-                (scoringDataDto.getTerm(), monthlyPayment, amount, rate);
+        List<PaymentScheduleElementDto> paymentSchedule = PaymentScheduleProcessor.createPaymentSchedule(scoringDataDto.getTerm(), monthlyPayment, amount, rate);
 
         CreditDto creditDto = CreditDto.builder()
                 .amount(amount.setScale(2, RoundingMode.UP))

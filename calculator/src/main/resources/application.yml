@@ -1,10 +1,22 @@
 spring:
   application:
     name: calculator
-scoring:
-  base-rate: "10.0"
-  reason-refusal:
-    unsatisfactory-status: "неудовлетврительный рабочий статус"
+myapp:
+  baseRate: "10.0"
+  baseInsuranceCost: "100000.0"
+
+  minCreditAge: "20"
+  maxCreditAge: "65"
+
+  minWorkExperienceTotal: "18"
+  minWorkExperienceCurrent: "3"
+
+  minFemaleRateAge: "32"
+  maxFemaleRateAge: "60"
+  minMaleRateAge: "30"
+  maxMaleRateAge: "55"
+
+
 
 
 

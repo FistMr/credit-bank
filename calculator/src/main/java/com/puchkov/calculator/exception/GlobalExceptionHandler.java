@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
             ScoringException exception) {
         CreditRefusal incorrectValue = new CreditRefusal();
         incorrectValue.setInfo(exception.getMessage());
-        return new ResponseEntity<>(incorrectValue, HttpStatus.SERVICE_UNAVAILABLE);//todo проверить код ответа
+        return new ResponseEntity<>(incorrectValue, HttpStatus.SERVICE_UNAVAILABLE);
     }
 
     @ExceptionHandler

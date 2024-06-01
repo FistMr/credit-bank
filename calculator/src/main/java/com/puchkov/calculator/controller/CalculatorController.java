@@ -20,30 +20,21 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("calculator")
-@Tag(name="Calculator")
+@Tag(name = "Calculator")
 @Slf4j
 public class CalculatorController {
 
     private final CalculatorService calculatorService;
 
-    @Operation(
-            summary = "расчёт возможных условий кредита"
-    )
+    @Operation(summary = "расчёт возможных условий кредита")
     @PostMapping("/offers")
-    public List<LoanOfferDto> getOfferDtoList(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto){
-        log.info("CalculatorController: getOfferDtoList(Entrance) request: {}",loanStatementRequestDto);
-        List<LoanOfferDto> offerList = calculatorService.getOfferList(loanStatementRequestDto);
-        log.info("CalculatorController: getOfferDtoList(exit) response : {}", offerList);
-        return offerList;
+    public List<LoanOfferDto> getOfferDtoList(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto) {
+        return calculatorService.getOfferList(loanStatementRequestDto);
     }
-    @Operation(
-            summary = "валидация присланных данных + скоринг данных + полный расчет параметров кредита"
-    )
+
+    @Operation(summary = "валидация присланных данных + скоринг данных + полный расчет параметров кредита")
     @PostMapping("/calc")
-    public CreditDto getCreditDto(@Valid @RequestBody ScoringDataDto scoringDataDto){
-        log.info("CalculatorController: getCreditDto(Entrance) request: {}",scoringDataDto);
-        CreditDto creditDto = calculatorService.calcCreditDto(scoringDataDto);
-        log.info("CalculatorController: getCreditDto(exit) request: {}",creditDto);
-        return creditDto;
+    public CreditDto getCreditDto(@Valid @RequestBody ScoringDataDto scoringDataDto) {
+        return calculatorService.calcCreditDto(scoringDataDto);
     }
 }

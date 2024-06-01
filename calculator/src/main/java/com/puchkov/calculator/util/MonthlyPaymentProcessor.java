@@ -11,7 +11,7 @@ import java.math.RoundingMode;
 public class MonthlyPaymentProcessor {
 
     public BigDecimal calculate(BigDecimal totalAmount, Integer term, BigDecimal rate) {
-        log.info("MonthlyPaymentProcessor: calculate(Entrance) parameters: totalAmount = {}" +
+        log.debug("MonthlyPaymentProcessor: calculate(Entrance) parameters: totalAmount = {}" +
                 ",term = {}, rate = {}",totalAmount,term,rate );
         BigDecimal monthlyRate = rate.divide(new BigDecimal(1200), 10, RoundingMode.UP);
 
@@ -24,7 +24,7 @@ public class MonthlyPaymentProcessor {
 
         BigDecimal monthlyPayment = totalAmount.multiply(thirdStep);
 
-        log.info("MonthlyPaymentProcessor: calculate(Entrance) response: totalAmount = {}", monthlyPayment);
+        log.debug("MonthlyPaymentProcessor: calculate(Entrance) response: totalAmount = {}", monthlyPayment);
 
         return monthlyPayment;
     }
