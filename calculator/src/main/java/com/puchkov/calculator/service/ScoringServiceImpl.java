@@ -110,15 +110,15 @@ public class ScoringServiceImpl implements ScoringService {
         log.debug("ScoringService: score : MaritalStatus isValid rate = {}", rate);
 
         if (scoringDataDto.getGender().equals(Gender.FEMALE)
-                && (scoringDataDto.getBirthdate().plus(Period.ofYears(minFemaleRateAge)).isAfter(LocalDate.now())
-                && scoringDataDto.getBirthdate().plus(Period.ofYears(maxFemaleRateAge)).isBefore(LocalDate.now()))) {
+                && (scoringDataDto.getBirthdate().plus(Period.ofYears(minFemaleRateAge)).isBefore(LocalDate.now())
+                && scoringDataDto.getBirthdate().plus(Period.ofYears(maxFemaleRateAge)).isAfter(LocalDate.now()))) {
             rate = rate.subtract(BigDecimal.valueOf(3));
         }
 
 
         if (scoringDataDto.getGender().equals(Gender.MALE)
-                && (scoringDataDto.getBirthdate().plus(Period.ofYears(minMaleRateAge)).isAfter(LocalDate.now())
-                && scoringDataDto.getBirthdate().plus(Period.ofYears(maxMaleRateAge)).isBefore(LocalDate.now()))) {
+                && (scoringDataDto.getBirthdate().plus(Period.ofYears(minMaleRateAge)).isBefore(LocalDate.now())
+                && scoringDataDto.getBirthdate().plus(Period.ofYears(maxMaleRateAge)).isAfter(LocalDate.now()))) {
             rate = rate.subtract(BigDecimal.valueOf(3));
         }
 

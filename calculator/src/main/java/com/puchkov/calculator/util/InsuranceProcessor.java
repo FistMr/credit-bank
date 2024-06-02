@@ -1,6 +1,5 @@
 package com.puchkov.calculator.util;
 
-import com.puchkov.calculator.config.Properties;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,11 +11,9 @@ import java.time.Period;
 @Slf4j
 public class InsuranceProcessor {
 
-    public BigDecimal calculateInsuranceCost (LocalDate birthdate, Properties properties){
-        BigDecimal insuranceCost = new BigDecimal(properties.getBaseInsuranceCost());
-
-        int age =  Period.between(birthdate, LocalDate.now()).getYears();
-        double coefficient = (double) age /100;
+    public BigDecimal calculateInsuranceCost(LocalDate birthdate, BigDecimal insuranceCost) {
+        int age = Period.between(birthdate, LocalDate.now()).getYears();
+        double coefficient = (double) age / 100;
 
         insuranceCost = insuranceCost.multiply(BigDecimal.valueOf(coefficient));
 

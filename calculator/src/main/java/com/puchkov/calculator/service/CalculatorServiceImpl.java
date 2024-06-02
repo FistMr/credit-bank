@@ -45,7 +45,7 @@ public class CalculatorServiceImpl implements CalculatorService {
 
         if (isInsuranceEnabled) {
             rate = rate.subtract(BigDecimal.valueOf(3));
-            amount = requestDto.getAmount().add(InsuranceProcessor.calculateInsuranceCost(requestDto.getBirthdate(), properties));
+            amount = requestDto.getAmount().add(InsuranceProcessor.calculateInsuranceCost(requestDto.getBirthdate(), new BigDecimal(properties.getBaseInsuranceCost())));
         }
 
         if (isSalaryClient) {
@@ -79,7 +79,7 @@ public class CalculatorServiceImpl implements CalculatorService {
         BigDecimal amount = scoringDataDto.getAmount();
 
         if (scoringDataDto.getIsInsuranceEnabled()) {
-            amount = amount.add(InsuranceProcessor.calculateInsuranceCost(scoringDataDto.getBirthdate(), properties));
+            amount = amount.add(InsuranceProcessor.calculateInsuranceCost(scoringDataDto.getBirthdate(), new BigDecimal(properties.getBaseInsuranceCost())));
             log.debug("CalculatorServiceImpl: calcCreditDto: the amount has been increased scoringDataDto: amount = {}", amount);
         }
 

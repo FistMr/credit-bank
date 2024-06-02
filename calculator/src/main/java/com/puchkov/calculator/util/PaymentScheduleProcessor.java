@@ -49,7 +49,6 @@ public class PaymentScheduleProcessor {
 
             paymentSchedule.add(paymentScheduleElementDto);
 
-            interestPayment = BigDecimal.ZERO;
             debtPayment = BigDecimal.ZERO;
 
         }
