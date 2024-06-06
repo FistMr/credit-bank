@@ -38,7 +38,8 @@ public class GlobalExceptionHandler {
         if (mostSpecificCause.toString().contains("DateTimeParseException")) {
             errorMessage = "Неверный формат даты, ожидается формат yyyy-MM-dd.";
         } else {
-            errorMessage = "Ошибка чтения JSON: " + ex.getMessage();
+            String causeMessage = (ex.getCause() != null) ? ex.getCause().toString() : "";
+            errorMessage = "Ошибка чтения JSON: " + ex.getMessage().replace(causeMessage, "");
         }
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }

@@ -21,4 +21,5 @@ public class Properties {
     private String maxFemaleRateAge;
     private String minMaleRateAge;
     private String maxMaleRateAge;
+    private String maxCreditToSalaryRatio;
 }

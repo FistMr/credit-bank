@@ -16,6 +16,8 @@ myapp:
   minMaleRateAge: "30"
   maxMaleRateAge: "55"
 
+  maxCreditToSalaryRatio: "25"
+
 
 
 

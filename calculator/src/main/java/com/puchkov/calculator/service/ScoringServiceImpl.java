@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +27,7 @@ public class ScoringServiceImpl implements ScoringService {
         int maxCreditAge = Integer.parseInt(scoringProperties.getMaxCreditAge());
         int minWorkExperienceCurrent = Integer.parseInt(scoringProperties.getMinWorkExperienceCurrent());
         int minWorkExperienceTotal = Integer.parseInt(scoringProperties.getMinWorkExperienceTotal());
+        int maxCreditToSalaryRatio = Integer.parseInt(scoringProperties.getMaxCreditToSalaryRatio());
 
         switch (scoringDataDto.getEmployment().getEmploymentStatus()) {
             case UNEMPLOYED:
@@ -36,7 +38,7 @@ public class ScoringServiceImpl implements ScoringService {
 
         log.debug("ScoringService: score : EmploymentStatus isValid");
 
-        if (scoringDataDto.getAmount().compareTo(scoringDataDto.getEmployment().getSalary().multiply(BigDecimal.valueOf(25.0))) > 0) {
+        if (scoringDataDto.getAmount().compareTo(scoringDataDto.getEmployment().getSalary().multiply(BigDecimal.valueOf(maxCreditToSalaryRatio))) > 0) {
             throw new ScoringException("Отказ в выдаче кредита: Сумма кредита больше чем 25 зарплат заемщика");
         }
 
@@ -109,14 +111,14 @@ public class ScoringServiceImpl implements ScoringService {
 
         log.debug("ScoringService: score : MaritalStatus isValid rate = {}", rate);
 
-        if (scoringDataDto.getGender().equals(Gender.FEMALE)
+        if (Objects.equals(Gender.FEMALE,scoringDataDto.getGender())
                 && (scoringDataDto.getBirthdate().plus(Period.ofYears(minFemaleRateAge)).isBefore(LocalDate.now())
                 && scoringDataDto.getBirthdate().plus(Period.ofYears(maxFemaleRateAge)).isAfter(LocalDate.now()))) {
             rate = rate.subtract(BigDecimal.valueOf(3));
         }
 
 
-        if (scoringDataDto.getGender().equals(Gender.MALE)
+        if (Objects.equals(Gender.MALE,scoringDataDto.getGender())
                 && (scoringDataDto.getBirthdate().plus(Period.ofYears(minMaleRateAge)).isBefore(LocalDate.now())
                 && scoringDataDto.getBirthdate().plus(Period.ofYears(maxMaleRateAge)).isAfter(LocalDate.now()))) {
             rate = rate.subtract(BigDecimal.valueOf(3));

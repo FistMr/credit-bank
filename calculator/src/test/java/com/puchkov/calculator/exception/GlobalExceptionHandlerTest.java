@@ -12,6 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -26,8 +27,10 @@ public class GlobalExceptionHandlerTest {
         ScoringException exception = new ScoringException("Scoring failed");
         ResponseEntity<CreditRefusal> response = globalExceptionHandler.handleScoringException(exception);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE);
-        assertThat(response.getBody().getInfo()).isEqualTo("Scoring failed");
+        assertAll(
+                () -> assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE),
+                () -> assertThat(response.getBody().getInfo()).isEqualTo("Scoring failed")
+        );
     }
 
     @Test
@@ -39,11 +42,12 @@ public class GlobalExceptionHandlerTest {
 
         ResponseEntity<ValidationErrorResponse> response = globalExceptionHandler.handleValidationError(ex);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
-
-        assertThat(response.getBody().getViolationList()).hasSize(1);
-        assertThat(response.getBody().getViolationList().get(0).getFieldName()).isEqualTo("firstName");
-        assertThat(response.getBody().getViolationList().get(0).getMessage()).isEqualTo("must not be blank");
+        assertAll(
+                () -> assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST),
+                () -> assertThat(response.getBody().getViolationList()).hasSize(1),
+                () -> assertThat(response.getBody().getViolationList().get(0).getFieldName()).isEqualTo("firstName"),
+                () -> assertThat(response.getBody().getViolationList().get(0).getMessage()).isEqualTo("must not be blank")
+        );
     }
 
     @Test
@@ -53,7 +57,9 @@ public class GlobalExceptionHandlerTest {
 
         ResponseEntity<Object> response = globalExceptionHandler.handleHttpMessageNotReadableException(ex);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
-        assertThat(response.getBody()).isEqualTo("Неверный формат даты, ожидается формат yyyy-MM-dd.");
+        assertAll(
+                () -> assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST),
+                () -> assertThat(response.getBody()).isEqualTo("Неверный формат даты, ожидается формат yyyy-MM-dd.")
+        );
     }
 }
