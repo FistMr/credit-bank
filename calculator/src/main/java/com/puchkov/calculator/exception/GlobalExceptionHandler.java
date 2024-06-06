@@ -44,4 +44,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler
+    public ResponseEntity<CreditRefusal> handleException(
+            Exception exception) {
+        CreditRefusal incorrectValue = new CreditRefusal();
+        incorrectValue.setInfo(exception.getMessage());
+        return new ResponseEntity<>(incorrectValue, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }

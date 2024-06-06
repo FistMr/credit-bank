@@ -1,11 +1,12 @@
 package com.puchkov.calculator.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.puchkov.calculator.config.Properties;
-import com.puchkov.calculator.dto.*;
-import com.puchkov.calculator.dto.enums.EmploymentStatus;
-import com.puchkov.calculator.dto.enums.Gender;
-import com.puchkov.calculator.dto.enums.MaritalStatus;
-import com.puchkov.calculator.dto.enums.Position;
+import com.puchkov.calculator.dto.CreditDto;
+import com.puchkov.calculator.dto.LoanOfferDto;
+import com.puchkov.calculator.dto.LoanStatementRequestDto;
+import com.puchkov.calculator.dto.ScoringDataDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,8 +14,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,6 +34,9 @@ class CalculatorServiceImplTest {
     @InjectMocks
     private CalculatorServiceImpl calculatorService;
 
+    private final ObjectMapper objectMapper = new ObjectMapper()
+            .registerModule(new JavaTimeModule());
+
     @BeforeEach
     public void setup() {
         lenient().when(properties.getBaseRate()).thenReturn("5");
@@ -43,19 +48,12 @@ class CalculatorServiceImplTest {
     }
 
     @Test
-    void getOfferList() {
-        LoanStatementRequestDto request = LoanStatementRequestDto.builder()
-                .amount(new BigDecimal("50000.00"))
-                .term(12).firstName("Pavel")
-                .lastName("Ilyich")
-                .middleName("Puchkov")
-                .email("pavel.pu4ckow@yandex.ru")
-                .birthdate(LocalDate.parse("2001-11-06"))
-                .passportSeries("1234")
-                .passportNumber("123456")
-                .build();
+    void getOfferList() throws IOException {
+        File file = new File("src/test/resources/dto_json/loanStatementRequestDto.json");
+        LoanStatementRequestDto request = objectMapper.readValue(file, LoanStatementRequestDto.class);
 
         List<LoanOfferDto> offers = calculatorService.getOfferList(request);
+
         assertAll(
                 () -> assertEquals(4, offers.size()),
                 () -> assertTrue(offers.stream().anyMatch(o -> o.getIsInsuranceEnabled() && o.getIsSalaryClient())),
@@ -66,32 +64,9 @@ class CalculatorServiceImplTest {
     }
 
     @Test
-    void testCalcCreditDto() {
-
-        ScoringDataDto scoringData = ScoringDataDto.builder()
-                .amount(new BigDecimal("50000.00"))
-                .term(12).firstName("Pavel")
-                .lastName("Ilyich")
-                .middleName("Puchkov")
-                .gender(Gender.MALE)
-                .birthdate(LocalDate.of(2001, 11, 6))
-                .passportSeries("1234").passportNumber("567890")
-                .passportIssueDate(LocalDate.of(2019, 7, 11))
-                .passportIssueBranch("УМВД России по г. Севастополю")
-                .maritalStatus(MaritalStatus.SINGLE)
-                .dependentAmount(0)
-                .employment(EmploymentDto.builder()
-                        .employmentStatus(EmploymentStatus.STUDENT)
-                        .employerINN("1234567890")
-                        .salary(new BigDecimal("60000.00"))
-                        .position(Position.MANAGER)
-                        .workExperienceTotal(5)
-                        .workExperienceCurrent(2)
-                        .build())
-                .accountNumber("1234567890123456")
-                .isInsuranceEnabled(true)
-                .isSalaryClient(true)
-                .build();
+    void testCalcCreditDto() throws IOException {
+        File file = new File("src/test/resources/dto_json/scoringDataDto.json");
+        ScoringDataDto scoringData = objectMapper.readValue(file, ScoringDataDto.class);
 
         when(scoringService.getRateOnEmployment(any())).thenReturn(new BigDecimal("10"));
 
@@ -99,8 +74,8 @@ class CalculatorServiceImplTest {
 
         assertAll(
                 () -> assertNotNull(credit),
-                () -> assertEquals(new BigDecimal("72000.00"), credit.getAmount()),
-                () -> assertEquals(12, credit.getTerm()),
+                () -> assertEquals(new BigDecimal("52000.00"), credit.getAmount()),
+                () -> assertEquals(6, credit.getTerm()),
                 () -> assertNotNull(credit.getPaymentSchedule()),
                 () -> assertFalse(credit.getPaymentSchedule().isEmpty()),
                 () -> assertTrue(credit.getIsInsuranceEnabled()),
