@@ -7,6 +7,8 @@ import com.puchkov.calculator.dto.CreditDto;
 import com.puchkov.calculator.dto.LoanOfferDto;
 import com.puchkov.calculator.dto.LoanStatementRequestDto;
 import com.puchkov.calculator.dto.ScoringDataDto;
+import com.puchkov.calculator.service.impl.CalculatorServiceImpl;
+import com.puchkov.calculator.service.impl.ScoringServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

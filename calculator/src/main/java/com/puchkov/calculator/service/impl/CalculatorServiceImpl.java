@@ -1,7 +1,8 @@
-package com.puchkov.calculator.service;
+package com.puchkov.calculator.service.impl;
 
 import com.puchkov.calculator.config.Properties;
 import com.puchkov.calculator.dto.*;
+import com.puchkov.calculator.service.CalculatorService;
 import com.puchkov.calculator.util.InsuranceProcessor;
 import com.puchkov.calculator.util.MonthlyPaymentProcessor;
 import com.puchkov.calculator.util.PaymentScheduleProcessor;

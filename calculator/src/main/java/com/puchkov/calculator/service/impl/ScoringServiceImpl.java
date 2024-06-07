@@ -1,9 +1,10 @@
-package com.puchkov.calculator.service;
+package com.puchkov.calculator.service.impl;
 
 import com.puchkov.calculator.config.Properties;
 import com.puchkov.calculator.dto.ScoringDataDto;
 import com.puchkov.calculator.dto.enums.Gender;
 import com.puchkov.calculator.exception.ScoringException;
+import com.puchkov.calculator.service.ScoringService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

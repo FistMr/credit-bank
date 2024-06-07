@@ -1,5 +1,6 @@
 package com.puchkov.calculator.service;
 
+import com.puchkov.calculator.CalculatorApplication;
 import com.puchkov.calculator.config.Properties;
 import com.puchkov.calculator.dto.EmploymentDto;
 import com.puchkov.calculator.dto.ScoringDataDto;
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -22,16 +25,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest(classes = {CalculatorApplication.class})
 class ScoringServiceImplTest {
 
     @Mock
     private Properties scoringProperties;
 
-    private ScoringServiceImpl scoringService;
+    @Autowired
+    private ScoringService scoringService;
 
     @BeforeEach
     void setUp() {
-        scoringService = new ScoringServiceImpl(scoringProperties);
+
         lenient().when(scoringProperties.getBaseRate()).thenReturn("10");
         lenient().when(scoringProperties.getBaseInsuranceCost()).thenReturn("100000");
         lenient().when(scoringProperties.getMinCreditAge()).thenReturn("20");
@@ -122,7 +127,7 @@ class ScoringServiceImplTest {
 
         BigDecimal rate = scoringService.getRateOnEmployment(scoringDataDto);
 
-        assertEquals(new BigDecimal("8"), rate);
+        assertEquals(new BigDecimal("8.0"), rate);
     }
 
     @Test
@@ -141,7 +146,7 @@ class ScoringServiceImplTest {
 
         BigDecimal rate = scoringService.getRateOnEmployment(scoringDataDto);
 
-        assertEquals(new BigDecimal("8"), rate);
+        assertEquals(new BigDecimal("8.0"), rate);
     }
 
     @Test
@@ -160,7 +165,7 @@ class ScoringServiceImplTest {
 
         BigDecimal rate = scoringService.getRateOnEmployment(scoringDataDto);
 
-        assertEquals(new BigDecimal("8"), rate);
+        assertEquals(new BigDecimal("8.0"), rate);
     }
 
     @Test
@@ -179,7 +184,7 @@ class ScoringServiceImplTest {
 
         BigDecimal rate = scoringService.getRateOnEmployment(scoringDataDto);
 
-        assertEquals(new BigDecimal("6"), rate);
+        assertEquals(new BigDecimal("6.0"), rate);
     }
 
     @Test
@@ -198,6 +203,6 @@ class ScoringServiceImplTest {
 
         BigDecimal rate = scoringService.getRateOnEmployment(scoringDataDto);
 
-        assertEquals(new BigDecimal("6"), rate);
+        assertEquals(new BigDecimal("6.0"), rate);
     }
 }
