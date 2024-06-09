@@ -1,0 +1,26 @@
+{
+  "amount": 30000,
+  "term": 6,
+  "firstName": "Pavel",
+  "lastName": "Ilyich",
+  "middleName": "Puchkov",
+  "gender": "MALE",
+  "birthdate": "2001-11-06",
+  "passportSeries": "1234",
+  "passportNumber": "123456",
+  "passportIssueDate": "2019-07-11",
+  "passportIssueBranch": "УМВД России по г. Севастополю",
+  "maritalStatus": "SINGLE",
+  "dependentAmount": 0,
+  "employment": {
+    "employmentStatus": "WORKER",
+    "employerINN": "6301518684",
+    "salary": 10000,
+    "position": "ENTRY_LEVEL",
+    "workExperienceTotal": 25,
+    "workExperienceCurrent": 12
+  },
+  "accountNumber": "string",
+  "isInsuranceEnabled": true,
+  "isSalaryClient": true
+}
