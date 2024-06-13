@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5449e534-6ff3-4d35-ba07-0157c59495e4" name="Changes" comment="изменил тэги в pom файлах">
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/config/SwaggerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/controller/DealController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/LoanOfferDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/LoanStatementRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/enums/EmploymentStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/enums/Gender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/enums/MaritalStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/enums/Position.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/entity/ClientEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/repository/ClientRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/service/DealService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/service/impl/DealServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/DealApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/DealApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deal/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/deal/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +104,7 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "feature/deal/create-ms-deal",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "openjdk-21",
     "last.edited.regexp": "pavel.pu4ckow@yandex.ru",
@@ -294,6 +284,7 @@
       <workItem from="1717960419032" duration="781000" />
       <workItem from="1717961287149" duration="637000" />
       <workItem from="1718012643973" duration="10412000" />
+      <workItem from="1718279171781" duration="2012000" />
     </task>
     <task id="LOCAL-00001" summary="инициализация проекта">
       <option name="closed" value="true" />

@@ -13,7 +13,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>calculator</name>
     <description>calculator</description>
-    <packaging>jar</packaging>
     <properties>
         <java.version>11</java.version>
     </properties>
