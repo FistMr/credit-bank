@@ -21,7 +21,6 @@ public class DealController {
 
     @PostMapping("/statement")
     public List<LoanOfferDto> getOfferDtoList(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto) {
-        dealService.createClientAndStatement(loanStatementRequestDto);
-        return dealService.getOfferList(loanStatementRequestDto);
+        return dealService.createClientAndStatement(loanStatementRequestDto);
     }
 }

@@ -2,7 +2,10 @@ package com.puchkov.deal.entity;
 
 import com.puchkov.deal.enums.Gender;
 import com.puchkov.deal.enums.MaritalStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +13,9 @@ import java.util.UUID;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Client {
     @Id
     @GeneratedValue

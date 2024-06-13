@@ -1,5 +1,6 @@
 package com.puchkov.deal.dto;
 
+import com.puchkov.deal.enums.ApplicationStatus;
 import com.puchkov.deal.enums.ChangeType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,9 +15,9 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StatusHistoryDto {
+public class StatusHistoryElementDto {
 
-    private String status;
+    private ApplicationStatus status;
     private LocalDate time;
 
     @Enumerated(EnumType.STRING)

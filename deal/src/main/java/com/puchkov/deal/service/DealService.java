@@ -6,7 +6,5 @@ import java.util.List;
 
 public interface DealService {
 
-    void createClientAndStatement(LoanStatementRequestDto loanStatementRequestDto);
-
-    List<LoanOfferDto> getOfferList(LoanStatementRequestDto loanStatementRequestDto);
+    List<LoanOfferDto> createClientAndStatement(LoanStatementRequestDto loanStatementRequestDto);
 }
