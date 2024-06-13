@@ -1,4 +1,4 @@
-package com.example.deal;
+package com.puchkov.deal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

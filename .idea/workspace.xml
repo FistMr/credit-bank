@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5449e534-6ff3-4d35-ba07-0157c59495e4" name="Changes" comment="изменил тэги в pom файлах">
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/config/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/controller/DealController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/LoanOfferDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/LoanStatementRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/enums/EmploymentStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/enums/Gender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/enums/MaritalStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/dto/enums/Position.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/entity/ClientEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/repository/ClientRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/service/DealService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/service/impl/DealServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/DealApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/deal/src/main/java/com/example/deal/DealApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deal/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/deal/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/calculator/demo">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/deal">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="AnnotationType" />
+        <option value="JUnit5 Test Class" />
+        <option value="package.json" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <branch-grouping />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;FistMr&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="d32a5986-3f1a-4d9a-b4ba-5dc4b978f5a1" />
+        <option name="url" value="https://github.com/FistMr/credit-bank.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/calculator/pom.xml" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2gpRJ44FaVVHtVXOVOvXhNb4o51" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "android.gradle.sync.needed": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "last.edited.regexp": "pavel.pu4ckow@yandex.ru",
+    "last_opened_file_path": "D:/Documents/Programms/neoflex/credit-bank/deal/src/main/java/com/example/deal/dto",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Confirmation",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Documents\Programms\neoflex\credit-bank\deal\src\main\java\com\example\deal\dto" />
+      <recent name="D:\Documents\Programms\neoflex\credit-bank\deal\src\main\java\com\example\deal\dto\enums" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.deal.dto" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.puchkov.calculator.controller" />
+      <recent name="com.puchkov.calculator.exception" />
+      <recent name="com.puchkov.calculator.util" />
+      <recent name="com.puchkov.calculator.service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.deal.dto" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install" />
+      <command value="mvn dependency:tree" />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.CalculatorApplication">
+    <configuration name="CalculatorServiceImplTest.getOfferList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.puchkov.calculator.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.puchkov.calculator.service" />
+      <option name="MAIN_CLASS_NAME" value="com.puchkov.calculator.service.CalculatorServiceImplTest" />
+      <option name="METHOD_NAME" value="getOfferList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculatorServiceImplTest.testCalcCreditDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.puchkov.calculator.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.puchkov.calculator.service" />
+      <option name="MAIN_CLASS_NAME" value="com.puchkov.calculator.service.CalculatorServiceImplTest" />
+      <option name="METHOD_NAME" value="testCalcCreditDto" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GlobalExceptionHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.puchkov.calculator.exception.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.puchkov.calculator.exception" />
+      <option name="MAIN_CLASS_NAME" value="com.puchkov.calculator.exception.GlobalExceptionHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ScoringServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.puchkov.calculator.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.puchkov.calculator.service" />
+      <option name="MAIN_CLASS_NAME" value="com.puchkov.calculator.service.ScoringServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculatorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="calculator" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.puchkov.calculator.CalculatorApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.CalculatorServiceImplTest.getOfferList" />
+      <item itemvalue="JUnit.CalculatorServiceImplTest.testCalcCreditDto" />
+      <item itemvalue="JUnit.GlobalExceptionHandlerTest" />
+      <item itemvalue="JUnit.ScoringServiceImplTest" />
+      <item itemvalue="Spring Boot.CalculatorApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ScoringServiceImplTest" />
+        <item itemvalue="JUnit.GlobalExceptionHandlerTest" />
+        <item itemvalue="JUnit.CalculatorServiceImplTest.testCalcCreditDto" />
+        <item itemvalue="JUnit.CalculatorServiceImplTest.getOfferList" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5449e534-6ff3-4d35-ba07-0157c59495e4" name="Changes" comment="" />
+      <created>1716392459806</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716392459806</updated>
+      <workItem from="1716392461095" duration="937000" />
+      <workItem from="1716393431014" duration="3149000" />
+      <workItem from="1716468457490" duration="16277000" />
+      <workItem from="1716644549619" duration="20784000" />
+      <workItem from="1716722368587" duration="25725000" />
+      <workItem from="1716812939898" duration="13088000" />
+      <workItem from="1716904235802" duration="5232000" />
+      <workItem from="1717231815940" duration="25508000" />
+      <workItem from="1717327382642" duration="14956000" />
+      <workItem from="1717433292410" duration="438000" />
+      <workItem from="1717516319577" duration="2293000" />
+      <workItem from="1717585895337" duration="8321000" />
+      <workItem from="1717679505951" duration="17260000" />
+      <workItem from="1717750528936" duration="1124000" />
+      <workItem from="1717832206743" duration="7327000" />
+      <workItem from="1717848831437" duration="4880000" />
+      <workItem from="1717853828218" duration="550000" />
+      <workItem from="1717854392517" duration="2796000" />
+      <workItem from="1717858639815" duration="395000" />
+      <workItem from="1717867282548" duration="6751000" />
+      <workItem from="1717931238999" duration="139000" />
+      <workItem from="1717931393589" duration="9629000" />
+      <workItem from="1717943479482" duration="8909000" />
+      <workItem from="1717958957056" duration="303000" />
+      <workItem from="1717959308075" duration="739000" />
+      <workItem from="1717960107165" duration="240000" />
+      <workItem from="1717960419032" duration="781000" />
+      <workItem from="1717961287149" duration="637000" />
+      <workItem from="1718012643973" duration="10412000" />
+    </task>
+    <task id="LOCAL-00001" summary="инициализация проекта">
+      <option name="closed" value="true" />
+      <created>1716470711545</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716470711545</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Определение DTO">
+      <option name="closed" value="true" />
+      <created>1716474239174</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716474239174</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Определение DTO">
+      <option name="closed" value="true" />
+      <created>1716482697895</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716482697895</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Изменяю версию java и SpringBoot">
+      <option name="closed" value="true" />
+      <created>1716482826858</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716482826858</updated>
+    </task>
+    <task id="LOCAL-00005" summary="иправляю типы даных в DTO">
+      <option name="closed" value="true" />
+      <created>1716483982736</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716483982736</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Добавлены два эндпоинта с логикой. Подключен Swagger и обработка исключений через GlobalExceptionHandler. Добавлено логирование первого эндпоинта.">
+      <option name="closed" value="true" />
+      <created>1716820472851</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716820472851</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Добавлено логирование второго эндпоинта.&#10;Дабавлена спецификация Swagger для DTO второго эндпоинта">
+      <option name="closed" value="true" />
+      <created>1716823220160</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716823220160</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Добавляю @Adult которая проверяет, что возраст &gt;18 лет. &#10;Добавлен новый ExceptionHandler в GlobalExceptionHandler, который ловит ошибки связанные с не правильным форматом даты при parse в Jackson">
+      <option name="closed" value="true" />
+      <created>1716909545536</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716909545536</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Добавляю @Adult которая проверяет, что возраст &gt;18 лет. &#10;Добавлен новый ExceptionHandler в GlobalExceptionHandler, который ловит ошибки связанные с не правильным форматом даты при parse в Jackson">
+      <option name="closed" value="true" />
+      <created>1716909682383</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716909682383</updated>
+    </task>
+    <task id="LOCAL-00010" summary="исправление кода">
+      <option name="closed" value="true" />
+      <created>1716909771530</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1716909771531</updated>
+    </task>
+    <task id="LOCAL-00011" summary="исправление кода: убираю лишнее логирование, избыточные булевы массивы в методе getOfferList.&#10;Ограничения по возрасту и стажу работы вынесено в Properties&#10;Метод в ScoringServiceImpl разделен на два: В одном генерируются отказы по выдаче кредита, в другом изменяется ставка кредита. &#10;Стоимоть страховки стала прогрессивной и считается в InsuranceProcessor.">
+      <option name="closed" value="true" />
+      <created>1717239087142</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717239087142</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Написал Unit тесты">
+      <option name="closed" value="true" />
+      <created>1717349553753</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717349553753</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Вынес отношение суммы кредита к зарплате в Properties,&#10;Исключил возможность NullPointerException в ScoringServiceImpl, &#10;Ошибка чтения Json в методе handleHttpMessageNotReadableException теперь возвращает меньше информации, &#10;В CalculatorControllerTest создание объекта запроса теперь происходит чтением из файла&#10;Множественные asser-ы объединил в assertAll">
+      <option name="closed" value="true" />
+      <created>1717684530600</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1717684530600</updated>
+    </task>
+    <task id="LOCAL-00014" summary=" в CalculatorServiceImplTest объекты Dto не создаются через builder, а читаются из файла json">
+      <option name="closed" value="true" />
+      <created>1717697305752</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1717697305752</updated>
+    </task>
+    <task id="LOCAL-00015" summary="перенес имплеминтации сервисов в отдельную папку impl&#10;В ScoringServiceImplTest Внедрение зависмостей сделано через SpringBootTest и Autowired">
+      <option name="closed" value="true" />
+      <created>1717751054419</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1717751054420</updated>
+    </task>
+    <task id="LOCAL-00016" summary="изменил версию Spring boot и java">
+      <option name="closed" value="true" />
+      <created>1717849014991</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1717849014991</updated>
+    </task>
+    <task id="LOCAL-00017" summary="изменил версию Spring boot и java">
+      <option name="closed" value="true" />
+      <created>1717849689163</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1717849689163</updated>
+    </task>
+    <task id="LOCAL-00018" summary="изменил версию java">
+      <option name="closed" value="true" />
+      <created>1717851016278</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1717851016278</updated>
+    </task>
+    <task id="LOCAL-00019" summary="инициализировал модуль Deal">
+      <option name="closed" value="true" />
+      <created>1717851493227</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1717851493227</updated>
+    </task>
+    <task id="LOCAL-00020" summary="инициализировал модуль Deal,&#10;Изменины порты для модулей deal и calculator.">
+      <option name="closed" value="true" />
+      <created>1717947733868</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1717947733868</updated>
+    </task>
+    <task id="LOCAL-00021" summary="инициализировал модуль Deal,&#10;Изменины порты для модулей deal и calculator.">
+      <option name="closed" value="true" />
+      <created>1717948222279</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1717948222279</updated>
+    </task>
+    <task id="LOCAL-00022" summary="инициализировал модуль Deal,&#10;Изменины порты для модулей deal и calculator.">
+      <option name="closed" value="true" />
+      <created>1717949202327</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1717949202327</updated>
+    </task>
+    <task id="LOCAL-00023" summary="инициализировал модуль Deal,&#10;Изменины порты для модулей deal и calculator.">
+      <option name="closed" value="true" />
+      <created>1717958105783</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1717958105783</updated>
+    </task>
+    <task id="LOCAL-00024" summary="инициализировал модуль Deal,&#10;Изменины порты для модулей deal и calculator.">
+      <option name="closed" value="true" />
+      <created>1717959512659</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1717959512659</updated>
+    </task>
+    <task id="LOCAL-00025" summary="изменил тэги в pom файлах">
+      <option name="closed" value="true" />
+      <created>1717959917264</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1717959917264</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="ed060b63-bdee-4f2b-bf57-d54ba7a79a1b" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="develop" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="feature/deal/create-ms-deal" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+        <entry key="Paths">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="dir:D:/Documents/Programms/neoflex/credit-bank/deal" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="SHOW_ROOT_NAMES" value="true" />
+            </State>
+          </value>
+        </entry>
+        <entry key="ed060b63-bdee-4f2b-bf57-d54ba7a79a1b">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="SHOW_ROOT_NAMES" value="true" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/deal" />
+    </ignored-roots>
+    <MESSAGE value="инициализация проекта" />
+    <MESSAGE value="Определение DTO" />
+    <MESSAGE value="Изменяю версию java и SpringBoot" />
+    <MESSAGE value="иправляю типы даных в DTO" />
+    <MESSAGE value="Добавлены два эндпоинта с логикой. Подключен Swagger и обработка исключений через GlobalExceptionHandler. Добавлено логирование первого эндпоинта." />
+    <MESSAGE value="Добавлено логирование второго эндпоинта.&#10;Дабавлена спецификация Swagger для DTO второго эндпоинта" />
+    <MESSAGE value="Добавляю @Adult которая проверяет, что возраст &gt;18 лет. &#10;Добавлен новый ExceptionHandler в GlobalExceptionHandler, который ловит ошибки связанные с не правильным форматом даты при parse в Jackson" />
+    <MESSAGE value="исправление кода" />
+    <MESSAGE value="исправление кода: убираю лишнее логирование, избыточные булевы массивы в методе getOfferList.&#10;Ограничения по возрасту и стажу работы вынесено в Properties&#10;Метод в ScoringServiceImpl разделен на два: В одном генерируются отказы по выдаче кредита, в другом изменяется ставка кредита. &#10;Стоимоть страховки стала прогрессивной и считается в InsuranceProcessor." />
+    <MESSAGE value="Написал Unit тесты" />
+    <MESSAGE value="Вынес отношение суммы кредита к зарплате в Properties,&#10;Исключил возможность NullPointerException в ScoringServiceImpl, &#10;Ошибка чтения Json в методе handleHttpMessageNotReadableException теперь возвращает меньше информации, &#10;В CalculatorControllerTest создание объекта запроса теперь происходит чтением из файла&#10;Множественные asser-ы объединил в assertAll" />
+    <MESSAGE value=" в CalculatorServiceImplTest объекты Dto не создаются через builder, а читаются из файла json" />
+    <MESSAGE value="перенес имплеминтации сервисов в отдельную папку impl&#10;В ScoringServiceImplTest Внедрение зависмостей сделано через SpringBootTest и Autowired" />
+    <MESSAGE value="изменил версию Spring boot и java" />
+    <MESSAGE value="изменил версию java" />
+    <MESSAGE value="инициализировал модуль Deal" />
+    <MESSAGE value="инициализировал модуль Deal,&#10;Изменины порты для модулей deal и calculator." />
+    <MESSAGE value="изменил тэги в pom файлах" />
+    <option name="LAST_COMMIT_MESSAGE" value="изменил тэги в pom файлах" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/credit_bank$CalculatorApplicationTests.ic" NAME="CalculatorApplicationTests Coverage Results" MODIFIED="1717332028864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.puchkov.calculator.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/credit_bank$ScoringServiceImplTest_testGetRateOnEmploymentWithInsuranceAndFreelancerDecreasesRate.ic" NAME="ScoringServiceImplTest.testGetRateOnEmploymentWithInsuranceAndFreelancerDecreasesRate Coverage Results" MODIFIED="1717330139467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.puchkov.calculator.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/credit_bank$ScoringServiceImplTest_testGetRateOnEmploymentWithManagerAndWidowedAndRateAgeDecreasesRate.ic" NAME="ScoringServiceImplTest.testGetRateOnEmploymentWithManagerAndWidowedAndRateAgeDecreasesRate Coverage Results" MODIFIED="1717331268009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.puchkov.calculator.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/credit_bank$ScoringServiceImplTest_testScoreWithUnacceptableWorkExperienceThrowsException.ic" NAME="ScoringServiceImplTest.testScoreWithUnacceptableWorkExperienceThrowsException Coverage Results" MODIFIED="1717329859034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.puchkov.calculator.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/credit_bank$CalculatorServiceImplTest.ic" NAME="CalculatorServiceImplTest Coverage Results" MODIFIED="1717331657027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.puchkov.calculator.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/credit_bank$InsuranceProcessorTest.ic" NAME="InsuranceProcessorTest Coverage Results" MODIFIED="1717341799705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.puchkov.calculator.util.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/credit_bank$java_in_calculator.ic" NAME="java in calculator Coverage Results" MODIFIED="1717854619662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/credit_bank$ScoringServiceImplTest_testGetRateOnEmploymentRateAgeAndSalaryClientDecreasesRate.ic" NAME="ScoringServiceImplTest.testGetRateOnEmploymentRateAgeAndSalaryClientDecreasesRate Coverage Results" MODIFIED="1717331877853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.puchkov.calculator.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/credit_bank$CalculatorServiceImplTest_getOfferList.ic" NAME="CalculatorServiceImplTest.getOfferList Coverage Results" MODIFIED="1717247484738" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.puchkov.calculator.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/credit_bank$ScoringServiceImplTest_testGetRateOnEmploymentWithSelfEmployedAndDirectorIncreasesRate.ic" NAME="ScoringServiceImplTest.testGetRateOnEmploymentWithSelfEmployedAndDirectorIncreasesRate Coverage Results" MODIFIED="1717329980208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.puchkov.calculator.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/credit_bank$ScoringServiceImplTest.ic" NAME="ScoringServiceImplTest Coverage Results" MODIFIED="1717331641393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.puchkov.calculator.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/credit_bank$ScoringServiceImplTest_testGetRateOnEmploymentWithSeniorAndBusinessmanAndMarriedDecreasesRate.ic" NAME="ScoringServiceImplTest.testGetRateOnEmploymentWithSeniorAndBusinessmanAndMarriedDecreasesRate Coverage Results" MODIFIED="1717330298746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.puchkov.calculator.service.*</FILTER>
+    </SUITE>
+  </component>
+</project>
