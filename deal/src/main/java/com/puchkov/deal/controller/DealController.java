@@ -1,17 +1,17 @@
 package com.puchkov.deal.controller;
 
+import com.puchkov.deal.dto.FinishRegistrationRequestDto;
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.dto.LoanStatementRequestDto;
+import com.puchkov.deal.service.CalclateService;
 import com.puchkov.deal.service.OfferService;
 import com.puchkov.deal.service.StatementService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/deal")
@@ -22,6 +22,8 @@ public class DealController {
 
     private final OfferService offerService;
 
+    private final CalclateService calclateService;
+
     @PostMapping("/statement")
     public List<LoanOfferDto> getOfferDtoList(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto) {
         return statementService.createClientAndStatement(loanStatementRequestDto);
@@ -30,5 +32,11 @@ public class DealController {
     @PostMapping("/offer/select")
     public void saveOffer(@Valid @RequestBody LoanOfferDto loanOfferDto) {
         offerService.saveOffer(loanOfferDto);
+    }
+
+    @PostMapping("/deal/calculate/{statementId}")
+    public void saveCredit(@Valid @RequestBody FinishRegistrationRequestDto finishRegistrationRequestDto,
+                           @PathVariable String statementId) {
+        calclateService.saveCredit(finishRegistrationRequestDto, UUID.fromString(statementId));
     }
 }

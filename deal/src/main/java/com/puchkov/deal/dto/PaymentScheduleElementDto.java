@@ -7,44 +7,43 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.UUID;
+import java.time.LocalDate;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoanOfferDto {
+public class PaymentScheduleElementDto implements Serializable {
+
+    @Min(1)
+    @NotNull
+    private Integer number;
 
     @NotNull
-    private UUID statementId;
-
-    @NotNull
-    @DecimalMin(value = "0.0")
-    @Digits(integer = 10, fraction = 2)
-    private BigDecimal requestedAmount;
-
-    @NotNull
-    @DecimalMin(value = "0.0")
-    @Digits(integer = 10, fraction = 2)
-    private BigDecimal totalAmount;
-
-    @NotNull
-    private Integer term;
+    private LocalDate date;
 
     @NotNull
     @DecimalMin(value = "0.0")
     @Digits(integer = 10, fraction = 2)
-    private BigDecimal monthlyPayment;
+    private BigDecimal totalPayment;
 
     @NotNull
     @DecimalMin(value = "0.0")
     @Digits(integer = 10, fraction = 2)
-    private BigDecimal rate;
+    private BigDecimal interestPayment;
 
+    @NotNull
+    @DecimalMin(value = "0.0")
+    @Digits(integer = 10, fraction = 2)
+    private BigDecimal debtPayment;
 
-    private Boolean isInsuranceEnabled;
-    private Boolean isSalaryClient;
+    @NotNull
+    @DecimalMin(value = "0.0")
+    @Digits(integer = 10, fraction = 2)
+    private BigDecimal remainingDebt;
 
 }

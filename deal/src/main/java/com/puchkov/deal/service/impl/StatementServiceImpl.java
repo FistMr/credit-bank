@@ -42,7 +42,7 @@ public class StatementServiceImpl implements StatementService {
                 .series(requestDto.getPassportSeries())
                 .number(requestDto.getPassportNumber())
                 .build();
-        Client client = Client.builder()
+        Client client = Client.builder() //todo сделать mapper-s
                 .lastName(requestDto.getLastName())
                 .firstName(requestDto.getFirstName())
                 .middleName(requestDto.getMiddleName())
