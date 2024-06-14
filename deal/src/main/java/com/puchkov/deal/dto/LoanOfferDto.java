@@ -18,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class LoanOfferDto {
 
-    @Pattern(regexp = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
+    @NotNull
     private UUID statementId;
 
     @NotNull

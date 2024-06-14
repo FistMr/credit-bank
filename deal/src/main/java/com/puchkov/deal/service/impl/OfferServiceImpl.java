@@ -1,13 +1,44 @@
 package com.puchkov.deal.service.impl;
 
 import com.puchkov.deal.dto.LoanOfferDto;
+import com.puchkov.deal.dto.StatusHistoryElementDto;
+import com.puchkov.deal.entity.Statement;
+import com.puchkov.deal.enums.ApplicationStatus;
+import com.puchkov.deal.enums.ChangeType;
+import com.puchkov.deal.repository.StatementRepository;
 import com.puchkov.deal.service.OfferService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class OfferServiceImpl implements OfferService {
-    @Override
-    public void saveOffer(LoanOfferDto loanOfferDto) {
 
+    private final StatementRepository statementRepository;
+
+    @Override
+    @Transactional
+    public void saveOffer(LoanOfferDto loanOfferDto) {
+        Optional<Statement> optionalStatement = statementRepository.findById(loanOfferDto.getStatementId());
+        if (optionalStatement.isPresent()) {
+            Statement statement = optionalStatement.get();
+
+            List<StatusHistoryElementDto> statusHistory = statement.getStatusHistory();
+            statusHistory.add(StatusHistoryElementDto.builder()
+                    .status(ApplicationStatus.APPROVED)
+                    .time(LocalDateTime.now())
+                    .changeType(ChangeType.AUTOMATIC)
+                    .build());
+
+            statement.setStatus(statusHistory.get(statusHistory.size() - 1).getStatus());
+            statement.setStatusHistory(statusHistory);
+            statement.setAppliedOffer(loanOfferDto);
+            statementRepository.save(statement);
+        }
     }
 }
