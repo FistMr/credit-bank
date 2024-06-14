@@ -9,16 +9,17 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StatusHistoryElementDto {
+public class StatusHistoryElementDto implements Serializable {
 
     private ApplicationStatus status;
-    private LocalDate time;
+    private LocalDateTime time;
 
     @Enumerated(EnumType.STRING)
     private ChangeType changeType;

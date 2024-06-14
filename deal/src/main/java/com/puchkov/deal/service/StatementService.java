@@ -4,7 +4,7 @@ import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.dto.LoanStatementRequestDto;
 import java.util.List;
 
-public interface DealService {
+public interface StatementService {
 
     List<LoanOfferDto> createClientAndStatement(LoanStatementRequestDto loanStatementRequestDto);
 }

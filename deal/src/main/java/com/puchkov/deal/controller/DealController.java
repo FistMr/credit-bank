@@ -2,7 +2,8 @@ package com.puchkov.deal.controller;
 
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.dto.LoanStatementRequestDto;
-import com.puchkov.deal.service.DealService;
+import com.puchkov.deal.service.OfferService;
+import com.puchkov.deal.service.StatementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,10 +18,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DealController {
 
-    private final DealService dealService;
+    private final StatementService statementService;
+
+    private final OfferService offerService;
 
     @PostMapping("/statement")
     public List<LoanOfferDto> getOfferDtoList(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto) {
-        return dealService.createClientAndStatement(loanStatementRequestDto);
+        return statementService.createClientAndStatement(loanStatementRequestDto);
+    }
+
+    @PostMapping("/offer/select")
+    public void saveOffer(@Valid @RequestBody LoanOfferDto loanOfferDto) {
+        offerService.saveOffer(loanOfferDto);
     }
 }

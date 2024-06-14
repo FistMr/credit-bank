@@ -57,7 +57,7 @@ public class CalculatorServiceImpl implements CalculatorService {
         BigDecimal totalAmount = monthlyPayment.multiply(BigDecimal.valueOf(requestDto.getTerm()));
 
         LoanOfferDto loanOfferDto = LoanOfferDto.builder()
-                .statementId(UUID.randomUUID())
+                .statementId(UUID.randomUUID())//todo можно не присваивать т.к в deal переприсваивается
                 .requestedAmount(requestDto.getAmount())
                 .totalAmount(totalAmount.setScale(2, RoundingMode.UP))
                 .term(requestDto.getTerm())

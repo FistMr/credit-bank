@@ -1,13 +1,19 @@
 package com.puchkov.deal.entity;
 
+import com.puchkov.deal.dto.LoanOfferDto;
+import com.puchkov.deal.dto.StatusHistoryElementDto;
 import com.puchkov.deal.enums.ApplicationStatus;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,6 +21,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class Statement {
     @Id
     @GeneratedValue
@@ -30,13 +37,18 @@ public class Statement {
 
     @Enumerated(EnumType.STRING)
     private ApplicationStatus status;
+
     private LocalDate creationDate;
 
-//    @Column(columnDefinition = "jsonb")
-//    private String appliedOffer;
+    @Column(columnDefinition = "jsonb")
+    @Type(type = "jsonb")
+    private LoanOfferDto appliedOffer;
+
     private LocalDate signDate;
+
     private String sesCode;
 
-//    @Column(columnDefinition = "jsonb")
-//    private String statusHistory;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private List<StatusHistoryElementDto> statusHistory;
 }
