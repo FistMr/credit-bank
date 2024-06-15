@@ -17,4 +17,5 @@ public class StatementMapper {
                 .creationDate(LocalDate.now())
                 .build();
     }
+
 }

@@ -6,6 +6,7 @@ import com.puchkov.deal.dto.LoanStatementRequestDtoDto;
 import com.puchkov.deal.service.main.CalclateService;
 import com.puchkov.deal.service.main.OfferService;
 import com.puchkov.deal.service.main.StatementService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/deal")
 @RequiredArgsConstructor
+@Tag(name = "Deal")
 public class DealController {
 
     private final StatementService statementService;

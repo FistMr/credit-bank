@@ -4,7 +4,7 @@ import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.dto.StatusHistoryElementDto;
 import com.puchkov.deal.entity.Statement;
 import com.puchkov.deal.enums.ApplicationStatus;
-import com.puchkov.deal.exception.ExternalServiceException;
+import com.puchkov.deal.exception.DataException;
 import com.puchkov.deal.repository.StatementRepository;
 import com.puchkov.deal.service.auxiliary.StatusHistoryManager;
 import com.puchkov.deal.service.main.OfferService;
@@ -35,9 +35,10 @@ public class OfferServiceImpl implements OfferService {
             statement.setStatus(ApplicationStatus.APPROVED);
             statement.setStatusHistory(statusHistory);
             statement.setAppliedOffer(loanOfferDto);
+
             statementRepository.save(statement);
-        }else {
-            throw new ExternalServiceException("Заявки не существует");
+        } else {
+            throw new DataException("Заявки не существует");
         }
     }
 }

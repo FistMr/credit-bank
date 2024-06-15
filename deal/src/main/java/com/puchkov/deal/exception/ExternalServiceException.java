@@ -1,7 +1,13 @@
 package com.puchkov.deal.exception;
 
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+@Getter
 public class ExternalServiceException extends RuntimeException{
-    public ExternalServiceException(String message) {
+    private final HttpStatus status;
+    public ExternalServiceException(String message, HttpStatus status) {
         super(message);
+        this.status = status;
     }
 }

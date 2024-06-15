@@ -17,7 +17,9 @@ import com.puchkov.deal.service.auxiliary.ExternalServiceClient;
 import com.puchkov.deal.service.auxiliary.StatusHistoryManager;
 import com.puchkov.deal.service.main.StatementService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +29,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class StatementServiceImpl implements StatementService {
 
     private final ClientRepository clientRepository;
@@ -47,15 +50,14 @@ public class StatementServiceImpl implements StatementService {
     @Transactional
     public List<LoanOfferDto> createClientAndStatement(LoanStatementRequestDtoDto requestDto) {
 
-        Passport passport = passportMapper.DtoToEntity(requestDto);
+        Passport passport = passportMapper.dtoToEntity(requestDto);
         Client client = clientMapper.DtoToEntity(requestDto);
         client.setPassport(passport);
+
         clientRepository.save(client);
 
         List<StatusHistoryElementDto> statusHistory = new ArrayList<>();
-
-        statusHistory = statusHistoryManager.addElement(statusHistory, ApplicationStatus.PREAPPROVAL);
-
+        statusHistoryManager.addElement(statusHistory, ApplicationStatus.PREAPPROVAL);
         Statement statement = statementMapper.createStatement(statusHistory);
         statement.setClient(client);
 
@@ -65,6 +67,11 @@ public class StatementServiceImpl implements StatementService {
                 }
         );
 
+        if (response.getStatusCode() != HttpStatus.OK) {
+            log.error("Failed to fetch loan offers: {}", response.getStatusCode());
+            throw new ExternalServiceException("Ошибка со сторонним сервисом", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
         List<LoanOfferDto> loanOffers = response.getBody();
 
         if (loanOffers != null) {
@@ -72,7 +79,7 @@ public class StatementServiceImpl implements StatementService {
                 offer.setStatementId(statement.getStatementId());
             }
         } else {
-            throw new ExternalServiceException("пустой ответ от стороннего сервиса");
+            throw new ExternalServiceException("Пустой ответ от стороннего сервиса", HttpStatus.NO_CONTENT);
         }
 
         return loanOffers;
