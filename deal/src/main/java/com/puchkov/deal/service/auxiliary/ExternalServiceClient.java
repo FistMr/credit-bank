@@ -1,7 +1,7 @@
 package com.puchkov.deal.service.auxiliary;
 
 
-import com.puchkov.deal.dto.RequestAble;
+import com.puchkov.deal.dto.RequestAbleDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -14,11 +14,11 @@ public class ExternalServiceClient {
 
     private final RestTemplate restTemplate;
 
-    public <T> ResponseEntity<T> getResponse(RequestAble requestDto, String url, ParameterizedTypeReference<T> responseType) {
+    public <T> ResponseEntity<T> getResponse(RequestAbleDto requestDto, String url, ParameterizedTypeReference<T> responseType) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<RequestAble> requestEntity = new HttpEntity<>(requestDto, headers);
+        HttpEntity<RequestAbleDto> requestEntity = new HttpEntity<>(requestDto, headers);
 
         return restTemplate.exchange(
                 "http://localhost:8081/calculator" + url,

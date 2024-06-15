@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoanStatementRequestDto implements RequestAble{
+public class LoanStatementRequestDtoDto implements RequestAbleDto {
 
     @NotNull
     @DecimalMin(value = "30000.0", message = "Сумма кредита - действительное число, большее или равное 30000.")

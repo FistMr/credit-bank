@@ -1,7 +1,7 @@
 package com.puchkov.deal.service.main.impl;
 
 import com.puchkov.deal.dto.LoanOfferDto;
-import com.puchkov.deal.dto.LoanStatementRequestDto;
+import com.puchkov.deal.dto.LoanStatementRequestDtoDto;
 import com.puchkov.deal.dto.StatusHistoryElementDto;
 import com.puchkov.deal.entity.Client;
 import com.puchkov.deal.entity.Passport;
@@ -45,7 +45,7 @@ public class StatementServiceImpl implements StatementService {
 
     @Override
     @Transactional
-    public List<LoanOfferDto> createClientAndStatement(LoanStatementRequestDto requestDto) {
+    public List<LoanOfferDto> createClientAndStatement(LoanStatementRequestDtoDto requestDto) {
 
         Passport passport = passportMapper.DtoToEntity(requestDto);
         Client client = clientMapper.DtoToEntity(requestDto);
