@@ -1,4 +1,4 @@
-package com.puchkov.deal.service.impl;
+package com.puchkov.deal.service.main.impl;
 
 import com.puchkov.deal.dto.CreditDto;
 import com.puchkov.deal.dto.FinishRegistrationRequestDto;
@@ -12,7 +12,7 @@ import com.puchkov.deal.enums.ApplicationStatus;
 import com.puchkov.deal.enums.ChangeType;
 import com.puchkov.deal.enums.CreditStatus;
 import com.puchkov.deal.repository.StatementRepository;
-import com.puchkov.deal.service.CalclateService;
+import com.puchkov.deal.service.main.CalclateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;

@@ -1,4 +1,4 @@
-package com.puchkov.deal.service;
+package com.puchkov.deal.service.main;
 
 import com.puchkov.deal.dto.FinishRegistrationRequestDto;
 

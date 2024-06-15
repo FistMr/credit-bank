@@ -1,4 +1,4 @@
-package com.puchkov.deal.service.impl;
+package com.puchkov.deal.service.main.impl;
 
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.dto.StatusHistoryElementDto;
@@ -6,7 +6,7 @@ import com.puchkov.deal.entity.Statement;
 import com.puchkov.deal.enums.ApplicationStatus;
 import com.puchkov.deal.enums.ChangeType;
 import com.puchkov.deal.repository.StatementRepository;
-import com.puchkov.deal.service.OfferService;
+import com.puchkov.deal.service.main.OfferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

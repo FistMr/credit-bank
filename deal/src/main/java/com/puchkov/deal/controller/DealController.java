@@ -3,9 +3,9 @@ package com.puchkov.deal.controller;
 import com.puchkov.deal.dto.FinishRegistrationRequestDto;
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.dto.LoanStatementRequestDto;
-import com.puchkov.deal.service.CalclateService;
-import com.puchkov.deal.service.OfferService;
-import com.puchkov.deal.service.StatementService;
+import com.puchkov.deal.service.main.CalclateService;
+import com.puchkov.deal.service.main.OfferService;
+import com.puchkov.deal.service.main.StatementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
