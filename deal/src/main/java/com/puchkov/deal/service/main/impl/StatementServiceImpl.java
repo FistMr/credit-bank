@@ -63,7 +63,7 @@ public class StatementServiceImpl implements StatementService {
 
         statementRepository.save(statement);
 
-        ResponseEntity<List<LoanOfferDto>> response = externalServiceClient.getResponse(requestDto, "/offers", new ParameterizedTypeReference<List<LoanOfferDto>>() {
+        ResponseEntity<List<LoanOfferDto>> response = externalServiceClient.getResponse(requestDto, "/offers", new ParameterizedTypeReference<>() {
                 }
         );
 
