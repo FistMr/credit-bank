@@ -49,6 +49,7 @@ public class CalculateServiceImpl implements CalclateService {
 
     @Override
     public void saveCredit(FinishRegistrationRequestDto finishRegistrationRequestDto, UUID statementId) {
+        log.info("CalculateServiceImpl: saveCredit(Entrance) parameters : {}, StatementId = {}", finishRegistrationRequestDto, statementId);
         Optional<Statement> optionalStatement = statementRepository.findById(statementId);
         if (optionalStatement.isEmpty()) {
             throw new DataException("Заявка не существует");
@@ -97,6 +98,6 @@ public class CalculateServiceImpl implements CalclateService {
         statement.setStatus(ApplicationStatus.CC_APPROVED);
         statement.setCredit(credit);
         statementRepository.save(statement);
-
+        log.info("OfferServiceImpl: saveOffer(Exit)");
     }
 }

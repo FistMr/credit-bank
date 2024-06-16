@@ -49,6 +49,7 @@ public class StatementServiceImpl implements StatementService {
     @Override
     @Transactional
     public List<LoanOfferDto> createClientAndStatement(LoanStatementRequestDto requestDto) {
+        log.info("StatementServiceImpl: createClientAndStatement(Entrance) parameters : {}", requestDto);
 
         Passport passport = passportMapper.dtoToEntity(requestDto);
         Client client = clientMapper.DtoToEntity(requestDto);
@@ -81,7 +82,7 @@ public class StatementServiceImpl implements StatementService {
         } else {
             throw new ExternalServiceException("Пустой ответ от стороннего сервиса", HttpStatus.NO_CONTENT);
         }
-
+        log.info("StatementServiceImpl: createClientAndStatement(Exit) response : {}", loanOffers);
         return loanOffers;
     }
 }
