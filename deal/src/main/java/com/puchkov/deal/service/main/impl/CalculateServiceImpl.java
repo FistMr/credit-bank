@@ -62,6 +62,12 @@ public class CalculateServiceImpl implements CalclateService {
         }
 
         Client client = statement.getClient();
+        Employment employment = employmentMapper.dtoToEntity(finishRegistrationRequestDto);
+        clientMapper.updateEntity(client, finishRegistrationRequestDto);
+        passportMapper.updateEntity(client.getPassport(), finishRegistrationRequestDto);
+        client.setEmployment(employment);
+        statementRepository.save(statement);
+
         ScoringDataDto scoringDataDto = scoringDataDtoMapper.createDto(statement, client, finishRegistrationRequestDto);
         ResponseEntity<CreditDto> response;
         try {
@@ -89,11 +95,6 @@ public class CalculateServiceImpl implements CalclateService {
         Credit credit = creditMapper.dtoToEntity(creditDto);
 
         statusHistoryManager.addElement(statement.getStatusHistory(), ApplicationStatus.CC_APPROVED);
-
-        clientMapper.updateEntity(client, finishRegistrationRequestDto);
-        passportMapper.updateEntity(client.getPassport(), finishRegistrationRequestDto);
-        Employment employment = employmentMapper.dtoToEntity(finishRegistrationRequestDto);
-        client.setEmployment(employment);
 
         statement.setStatus(ApplicationStatus.CC_APPROVED);
         statement.setCredit(credit);
