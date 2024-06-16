@@ -1,0 +1,16 @@
+{
+  "gender": "MALE",
+  "maritalStatus": "SINGLE",
+  "dependentAmount": 0,
+  "passportIssueDate": "2019-11-06",
+  "passportIssueBranch": "УМВД России по г. Севастополю",
+  "employment": {
+    "employmentStatus": "WORKER",
+    "employerINN": "218497101964",
+    "salary": 60000,
+    "position": "ENTRY_LEVEL",
+    "workExperienceTotal": 20,
+    "workExperienceCurrent": 12
+  },
+  "accountNumber": "string"
+}
