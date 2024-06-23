@@ -1,4 +1,4 @@
-package com.puchkov.deal.service.auxiliary;
+package com.puchkov.deal.util;
 
 
 import com.puchkov.deal.dto.RequestAbleDto;

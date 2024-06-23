@@ -1,4 +1,4 @@
-package com.puchkov.deal.service.main.impl;
+package com.puchkov.deal.service.impl;
 
 import com.puchkov.deal.dto.CreditDto;
 import com.puchkov.deal.dto.FinishRegistrationRequestDto;
@@ -12,8 +12,8 @@ import com.puchkov.deal.exception.DataException;
 import com.puchkov.deal.exception.ExternalServiceException;
 import com.puchkov.deal.mapper.*;
 import com.puchkov.deal.repository.StatementRepository;
-import com.puchkov.deal.service.auxiliary.ExternalServiceClient;
-import com.puchkov.deal.service.auxiliary.StatusHistoryManager;
+import com.puchkov.deal.util.ExternalServiceClient;
+import com.puchkov.deal.util.StatusHistoryManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

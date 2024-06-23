@@ -1,5 +1,6 @@
 package com.puchkov.deal.service.auxiliary;
 
+import com.puchkov.deal.util.StatusHistoryManager;
 import com.puchkov.deal.dto.StatusHistoryElementDto;
 import com.puchkov.deal.enums.ApplicationStatus;
 import com.puchkov.deal.enums.ChangeType;

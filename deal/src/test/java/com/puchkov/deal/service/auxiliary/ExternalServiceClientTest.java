@@ -1,5 +1,6 @@
 package com.puchkov.deal.service.auxiliary;
 
+import com.puchkov.deal.util.ExternalServiceClient;
 import com.puchkov.deal.dto.LoanStatementRequestDto;
 import com.puchkov.deal.dto.RequestAbleDto;
 import com.puchkov.deal.exception.ExternalServiceException;

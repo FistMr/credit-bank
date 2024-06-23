@@ -1,4 +1,4 @@
-package com.puchkov.deal.service.main.impl;
+package com.puchkov.deal.service.impl;
 
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.dto.LoanStatementRequestDto;
@@ -12,8 +12,8 @@ import com.puchkov.deal.mapper.PassportMapper;
 import com.puchkov.deal.mapper.StatementMapper;
 import com.puchkov.deal.repository.ClientRepository;
 import com.puchkov.deal.repository.StatementRepository;
-import com.puchkov.deal.service.auxiliary.ExternalServiceClient;
-import com.puchkov.deal.service.auxiliary.StatusHistoryManager;
+import com.puchkov.deal.util.ExternalServiceClient;
+import com.puchkov.deal.util.StatusHistoryManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

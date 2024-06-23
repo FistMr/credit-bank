@@ -1,12 +1,12 @@
-package com.puchkov.deal.service.main.impl;
+package com.puchkov.deal.service.impl;
 
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.entity.Statement;
 import com.puchkov.deal.enums.ApplicationStatus;
 import com.puchkov.deal.exception.DataException;
 import com.puchkov.deal.repository.StatementRepository;
-import com.puchkov.deal.service.auxiliary.StatusHistoryManager;
-import com.puchkov.deal.service.main.OfferService;
+import com.puchkov.deal.util.StatusHistoryManager;
+import com.puchkov.deal.service.OfferService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

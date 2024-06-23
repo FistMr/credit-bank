@@ -1,4 +1,4 @@
-package com.puchkov.deal.service.main.impl;
+package com.puchkov.deal.service.impl;
 
 import com.puchkov.deal.dto.CreditDto;
 import com.puchkov.deal.dto.FinishRegistrationRequestDto;
@@ -13,9 +13,9 @@ import com.puchkov.deal.exception.DataException;
 import com.puchkov.deal.exception.ExternalServiceException;
 import com.puchkov.deal.mapper.*;
 import com.puchkov.deal.repository.StatementRepository;
-import com.puchkov.deal.service.auxiliary.ExternalServiceClient;
-import com.puchkov.deal.service.auxiliary.StatusHistoryManager;
-import com.puchkov.deal.service.main.CalclateService;
+import com.puchkov.deal.util.ExternalServiceClient;
+import com.puchkov.deal.util.StatusHistoryManager;
+import com.puchkov.deal.service.CalclateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
