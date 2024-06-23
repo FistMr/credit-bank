@@ -3,7 +3,7 @@ package com.puchkov.deal.controller;
 import com.puchkov.deal.dto.FinishRegistrationRequestDto;
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.dto.LoanStatementRequestDto;
-import com.puchkov.deal.service.CalclateService;
+import com.puchkov.deal.service.CalculateService;
 import com.puchkov.deal.service.OfferService;
 import com.puchkov.deal.service.StatementService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,7 +24,7 @@ public class DealController {
 
     private final OfferService offerService;
 
-    private final CalclateService calclateService;
+    private final CalculateService calculateService;
 
     @PostMapping("/statement")
     public List<LoanOfferDto> getOfferDtoList(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto) {
@@ -39,6 +39,6 @@ public class DealController {
     @PostMapping("/calculate/{statementId}")
     public void saveCredit(@Valid @RequestBody FinishRegistrationRequestDto finishRegistrationRequestDto,
                            @PathVariable String statementId) {
-        calclateService.saveCredit(finishRegistrationRequestDto, UUID.fromString(statementId));
+        calculateService.saveCredit(finishRegistrationRequestDto, UUID.fromString(statementId));
     }
 }

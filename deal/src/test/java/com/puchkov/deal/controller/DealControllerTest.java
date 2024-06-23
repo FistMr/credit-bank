@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.puchkov.deal.dto.FinishRegistrationRequestDto;
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.dto.LoanStatementRequestDto;
-import com.puchkov.deal.service.CalclateService;
+import com.puchkov.deal.service.CalculateService;
 import com.puchkov.deal.service.OfferService;
 import com.puchkov.deal.service.StatementService;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ class DealControllerTest {
     private OfferService offerService;
 
     @MockBean
-    private CalclateService calclateService;
+    private CalculateService calculateService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -85,6 +85,6 @@ class DealControllerTest {
                         .content(objectMapper.writeValueAsString(requestDto)))
                 .andExpect(status().isOk());
 
-        verify(calclateService, times(1)).saveCredit(any(FinishRegistrationRequestDto.class), any(UUID.class));
+        verify(calculateService, times(1)).saveCredit(any(FinishRegistrationRequestDto.class), any(UUID.class));
     }
 }

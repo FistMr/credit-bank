@@ -1,4 +1,4 @@
-package com.puchkov.deal.service.impl;
+package com.puchkov.deal.service;
 
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.entity.Statement;
@@ -6,11 +6,12 @@ import com.puchkov.deal.enums.ApplicationStatus;
 import com.puchkov.deal.exception.DataException;
 import com.puchkov.deal.repository.StatementRepository;
 import com.puchkov.deal.util.StatusHistoryManager;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -21,21 +22,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class OfferServiceImplTest {
+@SpringBootTest
+@ExtendWith(MockitoExtension.class)
+class OfferServiceTest {
 
-    @Mock
+    @MockBean
     private StatementRepository statementRepository;
 
-    @Mock
+    @MockBean
     private StatusHistoryManager statusHistoryManager;
 
-    @InjectMocks
-    private OfferServiceImpl offerServiceImpl;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+    @Autowired
+    private OfferService offerService;
 
     @Test
     void saveOffer_success() {
@@ -47,7 +45,7 @@ class OfferServiceImplTest {
 
         when(statementRepository.findById(statementId)).thenReturn(Optional.of(statement));
 
-        offerServiceImpl.saveOffer(loanOfferDto);
+        offerService.saveOffer(loanOfferDto);
 
         verify(statusHistoryManager, times(1)).addElement(eq(statement.getStatusHistory()), eq(ApplicationStatus.APPROVED));
         verify(statementRepository, times(1)).save(statement);
@@ -64,7 +62,7 @@ class OfferServiceImplTest {
         when(statementRepository.findById(statementId)).thenReturn(Optional.empty());
 
         DataException exception = assertThrows(DataException.class, () -> {
-            offerServiceImpl.saveOffer(loanOfferDto);
+            offerService.saveOffer(loanOfferDto);
         });
 
         assertEquals("Заявки не существует", exception.getMessage());

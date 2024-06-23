@@ -15,7 +15,7 @@ import com.puchkov.deal.mapper.*;
 import com.puchkov.deal.repository.StatementRepository;
 import com.puchkov.deal.util.ExternalServiceClient;
 import com.puchkov.deal.util.StatusHistoryManager;
-import com.puchkov.deal.service.CalclateService;
+import com.puchkov.deal.service.CalculateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
@@ -29,7 +29,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class CalculateServiceImpl implements CalclateService {
+public class CalculateServiceImpl implements CalculateService {
 
     private final StatementRepository statementRepository;
 

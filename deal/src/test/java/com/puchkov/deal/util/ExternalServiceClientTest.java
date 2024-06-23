@@ -1,12 +1,16 @@
-package com.puchkov.deal.service.auxiliary;
+package com.puchkov.deal.util;
 
-import com.puchkov.deal.util.ExternalServiceClient;
 import com.puchkov.deal.dto.LoanStatementRequestDto;
 import com.puchkov.deal.dto.RequestAbleDto;
 import com.puchkov.deal.exception.ExternalServiceException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpStatusCodeException;
@@ -16,18 +20,15 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class ExternalServiceClientTest {
 
-    @Mock
+    @MockBean
     private RestTemplate restTemplate;
 
-    @InjectMocks
+    @Autowired
     private ExternalServiceClient externalServiceClient;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Test
     void getResponse_success() {

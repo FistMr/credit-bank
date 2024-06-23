@@ -4,7 +4,7 @@ import com.puchkov.deal.dto.FinishRegistrationRequestDto;
 
 import java.util.UUID;
 
-public interface CalclateService {
+public interface CalculateService {
 
     void saveCredit(FinishRegistrationRequestDto finishRegistrationRequestDto, UUID statementId);
 

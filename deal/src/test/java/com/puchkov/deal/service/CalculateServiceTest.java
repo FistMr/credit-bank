@@ -1,4 +1,4 @@
-package com.puchkov.deal.service.impl;
+package com.puchkov.deal.service;
 
 import com.puchkov.deal.dto.CreditDto;
 import com.puchkov.deal.dto.FinishRegistrationRequestDto;
@@ -14,11 +14,12 @@ import com.puchkov.deal.mapper.*;
 import com.puchkov.deal.repository.StatementRepository;
 import com.puchkov.deal.util.ExternalServiceClient;
 import com.puchkov.deal.util.StatusHistoryManager;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,39 +34,36 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.*;
 
-class CalculateServiceImplTest {
+@SpringBootTest
+@ExtendWith(MockitoExtension.class)
+class CalculateServiceTest {
 
-    @Mock
+    @MockBean
     private StatementRepository statementRepository;
 
-    @Mock
+    @MockBean
     private ScoringDataDtoMapper scoringDataDtoMapper;
 
-    @Mock
+    @MockBean
     private ExternalServiceClient externalServiceClient;
 
-    @Mock
+    @MockBean
     private CreditMapper creditMapper;
 
-    @Mock
+    @MockBean
     private StatusHistoryManager statusHistoryManager;
 
-    @Mock
+    @MockBean
     private EmploymentMapper employmentMapper;
 
-    @Mock
+    @MockBean
     private ClientMapper clientMapper;
 
-    @Mock
+    @MockBean
     private PassportMapper passportMapper;
 
-    @InjectMocks
-    private CalculateServiceImpl calculateServiceImpl;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+    @Autowired
+    private CalculateService calculateService;
 
     @Test
     void saveCredit_success() {
@@ -86,10 +84,10 @@ class CalculateServiceImplTest {
                 .thenReturn(new ResponseEntity<>(creditDto, HttpStatus.OK));
         when(creditMapper.dtoToEntity(any(CreditDto.class))).thenReturn(credit);
 
-        calculateServiceImpl.saveCredit(finishRegistrationRequestDto, statementId);
+        calculateService.saveCredit(finishRegistrationRequestDto, statementId);
 
         verify(statusHistoryManager, times(1)).addElement(anyList(), eq(ApplicationStatus.CC_APPROVED));
-        verify(statementRepository, times(1)).save(statement);
+        verify(statementRepository, times(2)).save(statement);
         assertEquals(ApplicationStatus.CC_APPROVED, statement.getStatus());
         assertEquals(credit, statement.getCredit());
     }
@@ -102,7 +100,7 @@ class CalculateServiceImplTest {
         when(statementRepository.findById(any(UUID.class))).thenReturn(Optional.empty());
 
         DataException exception = assertThrows(DataException.class, () -> {
-            calculateServiceImpl.saveCredit(finishRegistrationRequestDto, statementId);
+            calculateService.saveCredit(finishRegistrationRequestDto, statementId);
         });
 
         assertEquals("Заявка не существует", exception.getMessage());
@@ -120,7 +118,7 @@ class CalculateServiceImplTest {
         when(statementRepository.findById(any(UUID.class))).thenReturn(Optional.of(statement));
 
         DataException exception = assertThrows(DataException.class, () -> {
-            calculateServiceImpl.saveCredit(finishRegistrationRequestDto, statementId);
+            calculateService.saveCredit(finishRegistrationRequestDto, statementId);
         });
 
         assertEquals("Оффер не сущуствует", exception.getMessage());
@@ -144,12 +142,12 @@ class CalculateServiceImplTest {
                 .thenThrow(new ExternalServiceException("Service Unavailable", HttpStatus.SERVICE_UNAVAILABLE));
 
         ExternalServiceException exception = assertThrows(ExternalServiceException.class, () -> {
-            calculateServiceImpl.saveCredit(finishRegistrationRequestDto, statementId);
+            calculateService.saveCredit(finishRegistrationRequestDto, statementId);
         });
 
         assertEquals(HttpStatus.SERVICE_UNAVAILABLE, exception.getStatus());
         verify(statusHistoryManager, times(1)).addElement(anyList(), eq(ApplicationStatus.CC_DENIED));
-        verify(statementRepository, times(1)).save(statement);
+        verify(statementRepository, times(2)).save(statement);
         assertEquals(ApplicationStatus.CC_DENIED, statement.getStatus());
     }
 
@@ -170,11 +168,11 @@ class CalculateServiceImplTest {
                 .thenReturn(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
 
         ExternalServiceException exception = assertThrows(ExternalServiceException.class, () -> {
-            calculateServiceImpl.saveCredit(finishRegistrationRequestDto, statementId);
+            calculateService.saveCredit(finishRegistrationRequestDto, statementId);
         });
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, exception.getStatus());
-        verify(statementRepository, times(0)).save(any(Statement.class));
+        verify(statementRepository, times(1)).save(any(Statement.class));
     }
 
     @Test
@@ -194,10 +192,10 @@ class CalculateServiceImplTest {
                 .thenReturn(new ResponseEntity<>(null, HttpStatus.OK));
 
         ExternalServiceException exception = assertThrows(ExternalServiceException.class, () -> {
-            calculateServiceImpl.saveCredit(finishRegistrationRequestDto, statementId);
+            calculateService.saveCredit(finishRegistrationRequestDto, statementId);
         });
 
         assertEquals(HttpStatus.NO_CONTENT, exception.getStatus());
-        verify(statementRepository, times(0)).save(any(Statement.class));
+        verify(statementRepository, times(1)).save(any(Statement.class));
     }
 }

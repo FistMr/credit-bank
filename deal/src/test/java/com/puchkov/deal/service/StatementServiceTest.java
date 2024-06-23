@@ -1,4 +1,4 @@
-package com.puchkov.deal.service.impl;
+package com.puchkov.deal.service;
 
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.dto.LoanStatementRequestDto;
@@ -14,11 +14,12 @@ import com.puchkov.deal.repository.ClientRepository;
 import com.puchkov.deal.repository.StatementRepository;
 import com.puchkov.deal.util.ExternalServiceClient;
 import com.puchkov.deal.util.StatusHistoryManager;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,46 +32,42 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class StatementServiceImplTest {
+@SpringBootTest
+@ExtendWith(MockitoExtension.class)
+class StatementServiceTest {
 
-    @Mock
+    @MockBean
     private ClientRepository clientRepository;
 
-    @Mock
+    @MockBean
     private StatementRepository statementRepository;
 
-    @Mock
+    @MockBean
     private PassportMapper passportMapper;
 
-    @Mock
+    @MockBean
     private ClientMapper clientMapper;
 
-    @Mock
+    @MockBean
     private StatusHistoryManager statusHistoryManager;
 
-    @Mock
+    @MockBean
     private StatementMapper statementMapper;
 
-    @Mock
+    @MockBean
     private ExternalServiceClient externalServiceClient;
 
-    @InjectMocks
-    private StatementServiceImpl statementServiceImpl;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+    @Autowired
+    private StatementService statementService;
 
     @Test
     void createClientAndStatement_success() {
         LoanStatementRequestDto requestDto = new LoanStatementRequestDto();
-        Passport passport = new Passport();
         Client client = new Client();
         Statement statement = new Statement();
         statement.setStatementId(UUID.randomUUID());
 
-        when(passportMapper.dtoToEntity(any())).thenReturn(passport);
+        when(passportMapper.dtoToEntity(any())).thenReturn(new Passport());
         when(clientMapper.DtoToEntity(any())).thenReturn(client);
         when(statementMapper.createStatement(any())).thenReturn(statement);
 
@@ -78,7 +75,7 @@ class StatementServiceImplTest {
         when(externalServiceClient.getResponse(any(), anyString(), any(ParameterizedTypeReference.class)))
                 .thenReturn(responseEntity);
 
-        List<LoanOfferDto> result = statementServiceImpl.createClientAndStatement(requestDto);
+        List<LoanOfferDto> result = statementService.createClientAndStatement(requestDto);
 
         assertNotNull(result);
         verify(clientRepository, times(1)).save(client);
@@ -104,7 +101,7 @@ class StatementServiceImplTest {
                 .thenReturn(responseEntity);
 
         ExternalServiceException exception = assertThrows(ExternalServiceException.class, () -> {
-            statementServiceImpl.createClientAndStatement(requestDto);
+            statementService.createClientAndStatement(requestDto);
         });
 
         assertEquals("Ошибка со сторонним сервисом", exception.getMessage());
@@ -132,7 +129,7 @@ class StatementServiceImplTest {
                 .thenReturn(responseEntity);
 
         ExternalServiceException exception = assertThrows(ExternalServiceException.class, () -> {
-            statementServiceImpl.createClientAndStatement(requestDto);
+            statementService.createClientAndStatement(requestDto);
         });
 
         assertEquals("Пустой ответ от стороннего сервиса", exception.getMessage());
