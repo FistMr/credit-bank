@@ -18,7 +18,7 @@ public class ExternalServiceClient {
 
     private final RestTemplate restTemplate;
 
-    public <T> void sendRequest(RequestAbleDto requestDto, String url) {
+    public void sendRequest(RequestAbleDto requestDto, String url) {
         log.debug("ExternalServiceClient: sendRequest(Entrance) parameters: requestDto = {}, url = {}", requestDto, url);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
