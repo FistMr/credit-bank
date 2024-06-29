@@ -1,6 +1,8 @@
 spring:
   application:
     name: calculator
+server:
+  port: 8081
 myapp:
   baseRate: "10.0"
   baseInsuranceCost: "100000.0"

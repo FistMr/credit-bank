@@ -138,6 +138,9 @@ public class ScoringServiceImpl implements ScoringService {
         }
 
         log.debug("ScoringService: score : IsSalaryClient isValid rate = {}", rate);
+        if (rate.compareTo(BigDecimal.ONE) < 0) {
+            rate = BigDecimal.ONE;
+        }
 
         log.debug("ScoringService: score : response = {}", rate);
         return rate;
