@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("statement")
 @Tag(name = "Calculator")
 @Slf4j
-public class CalculatorController {
+public class StatementController {
 
     private final StatementService statementService;
 
@@ -33,7 +33,7 @@ public class CalculatorController {
 
     @Operation(summary = "валидация присланных данных + скоринг данных + полный расчет параметров кредита")
     @PostMapping("/offer")
-    public void getCreditDto(@Valid @RequestBody LoanOfferDto loanOfferDto) {
+    public void saveOffer(@Valid @RequestBody LoanOfferDto loanOfferDto) {
         statementService.getCreditDto(loanOfferDto);
     }
 }
