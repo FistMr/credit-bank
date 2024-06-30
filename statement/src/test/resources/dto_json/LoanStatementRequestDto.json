@@ -1,0 +1,11 @@
+{
+  "amount": 50000,
+  "term": 12,
+  "firstName": "Pavel",
+  "lastName": "Ilyich",
+  "middleName": "Puchkov",
+  "email": "pavel.pu4ckow@yandex.ru",
+  "birthdate": "1998-11-06",
+  "passportSeries": "9508",
+  "passportNumber": "654073"
+}
