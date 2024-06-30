@@ -1,13 +1,15 @@
 spring:
   application:
     name: deal
+  liquibase:
+    change-log: db/changelog/main-changelog.xml
   jpa:
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
   datasource:
     url: jdbc:postgresql://localhost:5432/credit_bank_DB
     username: admin
