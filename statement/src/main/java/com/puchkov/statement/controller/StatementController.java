@@ -25,7 +25,7 @@ public class StatementController {
     private final StatementService statementService;
 
     @Operation(summary = "расчёт возможных условий кредита")
-    @PostMapping("")
+    @PostMapping
     public List<LoanOfferDto> getOfferDtoList(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto) {
         return statementService.getOfferList(loanStatementRequestDto);
 
