@@ -10,7 +10,7 @@ public class EmploymentMapper {
     public Employment dtoToEntity(FinishRegistrationRequestDto finishRegistrationRequestDto){
         return Employment.builder()
                 .status(finishRegistrationRequestDto.getEmployment().getEmploymentStatus())
-                .employerINN(finishRegistrationRequestDto.getEmployment().getEmployerINN())
+                .employerInn(finishRegistrationRequestDto.getEmployment().getEmployerINN())
                 .salary(finishRegistrationRequestDto.getEmployment().getSalary())
                 .position(finishRegistrationRequestDto.getEmployment().getPosition())
                 .workExperienceTotal(finishRegistrationRequestDto.getEmployment().getWorkExperienceTotal())

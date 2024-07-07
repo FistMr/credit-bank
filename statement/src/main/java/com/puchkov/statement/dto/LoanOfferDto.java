@@ -1,4 +1,4 @@
-package com.puchkov.calculator.dto;
+package com.puchkov.statement.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,11 +10,12 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.UUID;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoanOfferDto {
+public class LoanOfferDto implements RequestAbleDto {
 
     private UUID statementId;
 

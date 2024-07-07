@@ -1,0 +1,10 @@
+{
+  "statementId": "dc2987c9-d147-4a74-a0ae-71720cab8ec5",
+  "requestedAmount": 30000,
+  "totalAmount": 52913.79,
+  "term": 6,
+  "monthlyPayment": 8818.97,
+  "rate": 6,
+  "isInsuranceEnabled": true,
+  "isSalaryClient": true
+}

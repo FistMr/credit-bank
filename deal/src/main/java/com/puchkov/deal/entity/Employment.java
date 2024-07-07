@@ -24,7 +24,7 @@ public class Employment {
     @Enumerated(EnumType.STRING)
     private EmploymentStatus status;
 
-    private String employerINN;
+    private String employerInn;
     private BigDecimal salary;
 
     @Enumerated(EnumType.STRING)
