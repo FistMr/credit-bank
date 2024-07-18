@@ -1,9 +1,17 @@
 spring:
   application:
-    name: statement
-  kafka:
-    producer:
-      bootstrap-servers: localhost:9092
+    name: dossier
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: CreditBank
+    password: admin
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 server:
   port: 8083
-
