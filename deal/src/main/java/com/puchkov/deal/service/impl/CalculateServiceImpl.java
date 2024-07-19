@@ -1,19 +1,18 @@
 package com.puchkov.deal.service.impl;
 
-import com.puchkov.deal.dto.CreditDto;
-import com.puchkov.deal.dto.FinishRegistrationRequestDto;
-import com.puchkov.deal.dto.LoanOfferDto;
-import com.puchkov.deal.dto.ScoringDataDto;
+import com.puchkov.deal.dto.*;
 import com.puchkov.deal.entity.Client;
 import com.puchkov.deal.entity.Credit;
 import com.puchkov.deal.entity.Employment;
 import com.puchkov.deal.entity.Statement;
 import com.puchkov.deal.enums.ApplicationStatus;
+import com.puchkov.deal.enums.Theme;
 import com.puchkov.deal.exception.DataException;
 import com.puchkov.deal.exception.ExternalServiceException;
 import com.puchkov.deal.mapper.*;
 import com.puchkov.deal.repository.StatementRepository;
 import com.puchkov.deal.util.ExternalServiceClient;
+import com.puchkov.deal.util.KafkaEventsPublisher;
 import com.puchkov.deal.util.StatusHistoryManager;
 import com.puchkov.deal.service.CalculateService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +29,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class CalculateServiceImpl implements CalculateService {
+
+    private final KafkaEventsPublisher kafkaEventsPublisher;
 
     private final StatementRepository statementRepository;
 
@@ -98,7 +99,15 @@ public class CalculateServiceImpl implements CalculateService {
 
         statement.setStatus(ApplicationStatus.CC_APPROVED);
         statement.setCredit(credit);
+
         statementRepository.save(statement);
+
+        kafkaEventsPublisher.sendEventsToTopic(EmailMessage.builder()
+                .address(statement.getClient().getEmail())
+                .theme(Theme.CREATE_DOCUMENTS)
+                .statementId(statement.getStatementId())
+                .build());
+
         log.info("OfferServiceImpl: saveOffer(Exit)");
     }
 }
