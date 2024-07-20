@@ -25,6 +25,11 @@ public class DocumentController {
 
     @PostMapping("/{statementId}/sign")
     public void signDocuments(@PathVariable UUID statementId) {
-        documentService.sendDocument(statementId);
+        documentService.signDocument(statementId);
+    }
+
+    @PostMapping("/{statementId}/code")
+    public void codeDocuments(@PathVariable UUID statementId) {
+        documentService.signDocument(statementId);
     }
 }

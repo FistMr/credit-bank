@@ -1,9 +1,7 @@
 package com.puchkov.deal.service.impl;
 
-import com.puchkov.deal.dto.EmailMessage;
 import com.puchkov.deal.entity.Statement;
 import com.puchkov.deal.enums.ApplicationStatus;
-import com.puchkov.deal.enums.Theme;
 import com.puchkov.deal.exception.DataException;
 import com.puchkov.deal.repository.StatementRepository;
 import com.puchkov.deal.service.DocumentService;
@@ -30,42 +28,48 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     public void sendDocument(UUID statementId) {
         log.info("DocumentServiceImpl: sendDocument(Entrance) StatementId = {}", statementId);
-        Optional<Statement> optionalStatement = statementRepository.findById(statementId);
-        if (optionalStatement.isEmpty()) {
-            throw new DataException("Заявка не существует");
-        }
-        Statement statement = optionalStatement.get();
+        Statement statement = getStatement(statementId);
 
         statusHistoryManager.addElement(statement.getStatusHistory(), ApplicationStatus.PREPARE_DOCUMENTS);
         statement.setStatus(ApplicationStatus.PREPARE_DOCUMENTS);
         statementRepository.save(statement);
 
-        kafkaEventsPublisher.sendEventsToTopic(EmailMessage.builder()
-                .address(statement.getClient().getEmail())
-                .theme(Theme.CREATE_DOCUMENTS)
-                .statementId(statement.getStatementId())
-                .build());
+        kafkaEventsPublisher.sendEventsToTopic(statement);
         log.info("DocumentServiceImpl: sendDocument(Exit)");
     }
 
     @Override
     public void signDocument(UUID statementId) {
         log.info("DocumentServiceImpl: signDocument(Entrance) StatementId = {}", statementId);
+        Statement statement = getStatement(statementId);
+        //todo генерация ses code и сохранение его в БД
+        kafkaEventsPublisher.sendEventsToTopic(statement);
+        log.info("DocumentServiceImpl: sendDocument(Exit)");
+    }
+
+    @Override
+    public void codeDocument(UUID statementId) {
+        log.info("DocumentServiceImpl: codeDocument(Entrance) StatementId = {}", statementId);
+        Statement statement = getStatement(statementId);
+        //todo верификация Ses code
+        statusHistoryManager.addElement(statement.getStatusHistory(), ApplicationStatus.DOCUMENT_SIGNED);
+        statement.setStatus(ApplicationStatus.DOCUMENT_SIGNED);
+        statementRepository.save(statement);
+        // что тут должно быть между двумя статусами?
+        statusHistoryManager.addElement(statement.getStatusHistory(), ApplicationStatus.CREDIT_ISSUED);
+        statement.setStatus(ApplicationStatus.CREDIT_ISSUED);
+        statementRepository.save(statement);
+
+        kafkaEventsPublisher.sendEventsToTopic(statement);
+        log.info("DocumentServiceImpl: sendDocument(Exit)");
+    }
+
+    private Statement getStatement(UUID statementId) {
         Optional<Statement> optionalStatement = statementRepository.findById(statementId);
         if (optionalStatement.isEmpty()) {
             throw new DataException("Заявка не существует");
         }
-        Statement statement = optionalStatement.get();
-
-        statusHistoryManager.addElement(statement.getStatusHistory(), ApplicationStatus.DOCUMENT_SIGNED);
-        statement.setStatus(ApplicationStatus.DOCUMENT_SIGNED);
-        statementRepository.save(statement);
-
-        kafkaEventsPublisher.sendEventsToTopic(EmailMessage.builder()
-                .address(statement.getClient().getEmail())
-                .theme(Theme.SEND_SES)
-                .statementId(statement.getStatementId())
-                .build());
-        log.info("DocumentServiceImpl: sendDocument(Exit)");
+        return optionalStatement.get();
     }
+
 }

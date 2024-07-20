@@ -1,6 +1,8 @@
 package com.puchkov.deal.util;
 
 import com.puchkov.deal.dto.EmailMessage;
+import com.puchkov.deal.entity.Statement;
+import com.puchkov.deal.enums.Theme;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -30,5 +32,13 @@ public class KafkaEventsPublisher {
         } catch (Exception ex) {
             System.out.println("ERROR : " + ex.getMessage());
         }
+    }
+
+    public void sendEventsToTopic(Statement statement) {
+        sendEventsToTopic(EmailMessage.builder()
+                .address(statement.getClient().getEmail())
+                .theme(Theme.SEND_SES)
+                .statementId(statement.getStatementId())
+                .build());
     }
 }
