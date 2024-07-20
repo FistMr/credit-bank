@@ -2,6 +2,7 @@ package com.puchkov.deal.service.impl;
 
 import com.puchkov.deal.entity.Statement;
 import com.puchkov.deal.enums.ApplicationStatus;
+import com.puchkov.deal.enums.Theme;
 import com.puchkov.deal.exception.DataException;
 import com.puchkov.deal.repository.StatementRepository;
 import com.puchkov.deal.service.DocumentService;
@@ -34,7 +35,7 @@ public class DocumentServiceImpl implements DocumentService {
         statement.setStatus(ApplicationStatus.PREPARE_DOCUMENTS);
         statementRepository.save(statement);
 
-        kafkaEventsPublisher.sendEventsToTopic(statement);
+        kafkaEventsPublisher.sendEventsToTopic(statement, Theme.SEND_DOCUMENTS);
         log.info("DocumentServiceImpl: sendDocument(Exit)");
     }
 
@@ -43,7 +44,7 @@ public class DocumentServiceImpl implements DocumentService {
         log.info("DocumentServiceImpl: signDocument(Entrance) StatementId = {}", statementId);
         Statement statement = getStatement(statementId);
         //todo генерация ses code и сохранение его в БД
-        kafkaEventsPublisher.sendEventsToTopic(statement);
+        kafkaEventsPublisher.sendEventsToTopic(statement, Theme.SEND_SES);
         log.info("DocumentServiceImpl: sendDocument(Exit)");
     }
 
@@ -60,7 +61,7 @@ public class DocumentServiceImpl implements DocumentService {
         statement.setStatus(ApplicationStatus.CREDIT_ISSUED);
         statementRepository.save(statement);
 
-        kafkaEventsPublisher.sendEventsToTopic(statement);
+        kafkaEventsPublisher.sendEventsToTopic(statement, Theme.CREDIT_ISSUED);
         log.info("DocumentServiceImpl: sendDocument(Exit)");
     }
 

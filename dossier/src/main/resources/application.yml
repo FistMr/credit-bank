@@ -1,17 +1,5 @@
 spring:
   application:
     name: dossier
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: bankcredit309@gmail.com
-    password: admin309
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true
 server:
   port: 8083

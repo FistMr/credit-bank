@@ -102,11 +102,7 @@ public class CalculateServiceImpl implements CalculateService {
 
         statementRepository.save(statement);
 
-        kafkaEventsPublisher.sendEventsToTopic(EmailMessage.builder()
-                .address(statement.getClient().getEmail())
-                .theme(Theme.CREATE_DOCUMENTS)
-                .statementId(statement.getStatementId())
-                .build());
+        kafkaEventsPublisher.sendEventsToTopic(statement, Theme.CREATE_DOCUMENTS);
 
         log.info("OfferServiceImpl: saveOffer(Exit)");
     }

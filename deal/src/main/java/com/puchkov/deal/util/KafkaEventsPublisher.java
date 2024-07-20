@@ -34,10 +34,10 @@ public class KafkaEventsPublisher {
         }
     }
 
-    public void sendEventsToTopic(Statement statement) {
+    public void sendEventsToTopic(Statement statement, Theme theme) {
         sendEventsToTopic(EmailMessage.builder()
                 .address(statement.getClient().getEmail())
-                .theme(Theme.SEND_SES)
+                .theme(theme)
                 .statementId(statement.getStatementId())
                 .build());
     }

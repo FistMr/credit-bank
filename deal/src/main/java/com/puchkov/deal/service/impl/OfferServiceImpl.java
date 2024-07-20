@@ -1,6 +1,5 @@
 package com.puchkov.deal.service.impl;
 
-import com.puchkov.deal.dto.EmailMessage;
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.entity.Statement;
 import com.puchkov.deal.enums.ApplicationStatus;
@@ -44,11 +43,7 @@ public class OfferServiceImpl implements OfferService {
 
         statementRepository.save(statement);
 
-        kafkaEventsPublisher.sendEventsToTopic(EmailMessage.builder()
-                .address(statement.getClient().getEmail())
-                .theme(Theme.FINISH_REGISTRATION)
-                .statementId(statement.getStatementId())
-                .build());
+        kafkaEventsPublisher.sendEventsToTopic(statement, Theme.FINISH_REGISTRATION);
 
         log.info("OfferServiceImpl: saveOffer(Exit)");
     }
