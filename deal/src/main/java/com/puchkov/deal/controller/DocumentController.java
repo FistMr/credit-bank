@@ -30,6 +30,6 @@ public class DocumentController {
 
     @PostMapping("/{statementId}/code")
     public void codeDocuments(@PathVariable UUID statementId) {
-        documentService.signDocument(statementId);
+        documentService.codeDocument(statementId);
     }
 }

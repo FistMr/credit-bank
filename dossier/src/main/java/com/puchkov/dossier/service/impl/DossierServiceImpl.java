@@ -24,36 +24,19 @@ public class DossierServiceImpl {
     private final DocumentService documentService;
 
     @KafkaListener(
-            topics = {"statement-denied"},
+            topics = {
+                    "statement-denied",
+                    "finish-registration",
+                    "create-documents",
+                    "send-ses",
+                    "credit-issued"},
             groupId = "emailGroup",
             containerFactory = "kafkaListenerContainerFactory")
     public void consumeStatementDeniedEvents(@Payload EmailMessage emailMessage, Acknowledgment acknowledgment) {
         log.info(emailMessage.toString());
         acknowledgment.acknowledge();
         emailService.sendSimpleEmail(emailMessage);
-        log.info("Message send to email: {}",emailMessage.getAddress());
-    }
-
-    @KafkaListener(
-            topics = {"finish-registration"},
-            groupId = "emailGroup",
-            containerFactory = "kafkaListenerContainerFactory")
-    public void consumeFinishRegistrationEvents(@Payload EmailMessage emailMessage, Acknowledgment acknowledgment) {
-        log.info(emailMessage.toString());
-        acknowledgment.acknowledge();
-        emailService.sendSimpleEmail(emailMessage);
-        log.info("Message send to email: {}",emailMessage.getAddress());
-    }
-
-    @KafkaListener(
-            topics = {"create-documents"},
-            groupId = "emailGroup",
-            containerFactory = "kafkaListenerContainerFactory")
-    public void consumeCreateDocumentsEvents(@Payload EmailMessage emailMessage, Acknowledgment acknowledgment) {
-        log.info(emailMessage.toString());
-        acknowledgment.acknowledge();
-        emailService.sendSimpleEmail(emailMessage);
-        log.info("Message send to email: {}",emailMessage.getAddress());
+        log.info("Message send to email: {}", emailMessage.getAddress());
     }
 
     @KafkaListener(
@@ -75,28 +58,6 @@ public class DossierServiceImpl {
         } catch (MessagingException | javax.mail.MessagingException ex) {
             log.debug("Error send document");
         }
-        log.info("Message send to email: {}",emailMessage.getAddress());
-    }
-
-    @KafkaListener(
-            topics = {"send-ses"},
-            groupId = "emailGroup",
-            containerFactory = "kafkaListenerContainerFactory")
-    public void consumeSendSesEvents(@Payload EmailMessage emailMessage, Acknowledgment acknowledgment) {
-        log.info(emailMessage.toString());
-        acknowledgment.acknowledge();
-        emailService.sendSimpleEmail(emailMessage);
-        log.info("Message send to email: {}",emailMessage.getAddress());
-    }
-
-    @KafkaListener(
-            topics = {"credit-issued"},
-            groupId = "emailGroup",
-            containerFactory = "kafkaListenerContainerFactory")
-    public void consumeCreditIssuedEvents(@Payload EmailMessage emailMessage, Acknowledgment acknowledgment) {
-        log.info(emailMessage.toString());
-        acknowledgment.acknowledge();
-        emailService.sendSimpleEmail(emailMessage);
-        log.info("Message send to email: {}",emailMessage.getAddress());
+        log.info("Message send to email: {}", emailMessage.getAddress());
     }
 }

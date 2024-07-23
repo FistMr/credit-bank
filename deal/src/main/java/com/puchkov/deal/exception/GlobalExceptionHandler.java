@@ -1,5 +1,6 @@
 package com.puchkov.deal.exception;
 
+import com.puchkov.deal.util.VerifyingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -28,6 +29,14 @@ public class GlobalExceptionHandler {
         IncorrectValue incorrectValue = new IncorrectValue();
         incorrectValue.setInfo(exception.getMessage());
         return new ResponseEntity<>(incorrectValue, HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<IncorrectValue> handleExternalServiceException(
+            VerifyingException exception) {
+        IncorrectValue incorrectValue = new IncorrectValue();
+        incorrectValue.setInfo(exception.getMessage());
+        return new ResponseEntity<>(incorrectValue, HttpStatus.PRECONDITION_FAILED);
     }
 
     @ExceptionHandler
