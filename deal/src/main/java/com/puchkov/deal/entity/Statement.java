@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Data //todo Data+Entity проверить
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
