@@ -3,6 +3,7 @@ package com.puchkov.dossier.service.impl;
 import com.puchkov.dossier.dto.EmailMessage;
 import com.puchkov.dossier.util.DocumentService;
 import com.puchkov.dossier.util.EmailService;
+import com.puchkov.dossier.util.ExternalServiceClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ByteArrayResource;
@@ -22,6 +23,8 @@ public class DossierServiceImpl {
     private final EmailService emailService;
 
     private final DocumentService documentService;
+
+    private final ExternalServiceClient externalServiceClient;
 
     @KafkaListener(
             topics = {
@@ -46,7 +49,9 @@ public class DossierServiceImpl {
     public void consumeSendDocumentsEvents(@Payload EmailMessage emailMessage, Acknowledgment acknowledgment) {
         log.info("Event recived: " + emailMessage.toString());
         acknowledgment.acknowledge();
-        //todo PUT: /deal/admin/statement/{statementId}/status запрос в Deal Update Status Documents_Created
+
+        externalServiceClient.sendRequest("/deal/admin/statement/" + emailMessage.getStatementId() + "/status");
+
         try {
             ByteArrayResource resource = documentService.createDocument(emailMessage.getStatementId());
             emailService.sendMessageWithDocuments(emailMessage.getAddress(),
