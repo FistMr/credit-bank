@@ -3,11 +3,14 @@ package com.puchkov.deal.service;
 import com.puchkov.deal.dto.LoanOfferDto;
 import com.puchkov.deal.entity.Statement;
 import com.puchkov.deal.enums.ApplicationStatus;
+import com.puchkov.deal.enums.Theme;
 import com.puchkov.deal.exception.DataException;
 import com.puchkov.deal.repository.StatementRepository;
+import com.puchkov.deal.util.KafkaEventsPublisher;
 import com.puchkov.deal.util.StatusHistoryManager;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,6 +35,9 @@ class OfferServiceTest {
     @MockBean
     private StatusHistoryManager statusHistoryManager;
 
+    @MockBean
+    private KafkaEventsPublisher kafkaEventsPublisher;
+
     @Autowired
     private OfferService offerService;
 
@@ -45,6 +51,7 @@ class OfferServiceTest {
 
         when(statementRepository.findById(statementId)).thenReturn(Optional.of(statement));
 
+        Mockito.doNothing().when(kafkaEventsPublisher).sendEventsToTopic(statement, Theme.FINISH_REGISTRATION);
         offerService.saveOffer(loanOfferDto);
 
         verify(statusHistoryManager, times(1)).addElement(eq(statement.getStatusHistory()), eq(ApplicationStatus.APPROVED));

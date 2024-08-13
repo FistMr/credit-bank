@@ -1,0 +1,126 @@
+version: '3.8'
+
+networks:
+  credit_bank_network:
+    driver: bridge
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    restart: unless-stopped
+    networks:
+      - credit_bank_network
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper
+    restart: unless-stopped
+    networks:
+      - credit_bank_network
+
+  postgres:
+    image: postgres:16.2-alpine
+    container_name: postgres-credit-bank
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: credit_bank_DB
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - credit_bank_network
+
+  calculator:
+    build:
+      context: ./calculator
+      dockerfile: Dockerfile
+    container_name: calculator
+    ports:
+      - "8081:8081"
+    depends_on:
+      - kafka
+      - postgres
+    restart: unless-stopped
+    networks:
+      - credit_bank_network
+
+  deal:
+    build:
+      context: ./deal
+      dockerfile: Dockerfile
+    container_name: deal
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/credit_bank_DB
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    ports:
+      - "8082:8082"
+    depends_on:
+      - kafka
+      - postgres
+    restart: unless-stopped
+    networks:
+      - credit_bank_network
+
+  statement:
+    build:
+      context: ./statement
+      dockerfile: Dockerfile
+    container_name: statement
+    ports:
+      - "8083:8083"
+    depends_on:
+      - kafka
+    restart: unless-stopped
+    networks:
+      - credit_bank_network
+
+  dossier:
+    build:
+      context: ./dossier
+      dockerfile: Dockerfile
+    container_name: dossier
+    environment:
+      MAIL_USERNAME: puchokok2001@gmail.com
+      MAIL_PASSWORD: mvml wzdd mxij iedj
+    ports:
+      - "8084:8084"
+    depends_on:
+      - kafka
+    restart: unless-stopped
+    networks:
+      - credit_bank_network
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    container_name: gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - calculator
+      - deal
+      - statement
+      - dossier
+    restart: unless-stopped
+    networks:
+      - credit_bank_network
+
+volumes:
+  pgdata:

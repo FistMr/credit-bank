@@ -17,16 +17,16 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public void sendDocument(UUID statementId) {
-        externalServiceClient.sendRequest("http://localhost:8082/deal/document/" + statementId + "/send");
+        externalServiceClient.sendRequest("http://deal:8082/deal/document/" + statementId + "/send");
     }
 
     @Override
     public void signDocument(UUID statementId) {
-        externalServiceClient.sendRequest("http://localhost:8082/deal/document/" + statementId + "/sign");
+        externalServiceClient.sendRequest("http://deal:8082/deal/document/" + statementId + "/sign");
     }
 
     @Override
     public void codeDocument(UUID statementId) {
-        externalServiceClient.sendRequest("http://localhost:8082/deal/document/" + statementId + "/code");
+        externalServiceClient.sendRequest("http://deal:8082/deal/document/" + statementId + "/code");
     }
 }

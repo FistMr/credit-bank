@@ -6,11 +6,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.puchkov.dossier.dto.EmailMessage;
+import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -19,15 +22,30 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
 @EnableKafka
+@RequiredArgsConstructor
 public class KafkaConsumerConfig {
 
     @Value("${spring.kafka.consumer.bootstrap-servers}")
     private String bootstrapServers;
+
+
+    private final Environment env;
+
+    @PostConstruct
+    public void printBootstrapServers() {
+        // Вывод значения из @Value
+        System.out.println("Kafka Bootstrap Servers from @Value: " + bootstrapServers);
+
+        // Вывод значения из Environment
+        System.out.println("Kafka Bootstrap Servers from Environment: " + env.getProperty("spring.kafka.consumer.bootstrap-servers"));
+    }
+
     @Bean
     public ConsumerFactory<String, EmailMessage> consumerFactory(ObjectMapper dossierObjectMapper) {
         Map<String, Object> props = new HashMap<>();

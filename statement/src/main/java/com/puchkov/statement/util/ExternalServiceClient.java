@@ -24,7 +24,7 @@ public class ExternalServiceClient {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<RequestAbleDto> requestEntity = new HttpEntity<>(requestDto, headers);
         try {
-            restTemplate.postForLocation("http://localhost:8082/deal" + url, requestEntity);
+            restTemplate.postForLocation("http://deal:8082/deal" + url, requestEntity);
             log.debug("ExternalServiceClient: sendRequest(Exit) Request sent successfully");
         } catch (HttpStatusCodeException e) {
             log.debug("ExternalServiceClient: sendRequest(error) Exception = {}", e.getMessage());
@@ -42,7 +42,7 @@ public class ExternalServiceClient {
         HttpEntity<RequestAbleDto> requestEntity = new HttpEntity<>(requestDto, headers);
         try {
             ResponseEntity<T> exchange = restTemplate.exchange(
-                    "http://localhost:8082/deal" + url,
+                    "http://deal:8082/deal" + url,
                     HttpMethod.POST,
                     requestEntity,
                     responseType

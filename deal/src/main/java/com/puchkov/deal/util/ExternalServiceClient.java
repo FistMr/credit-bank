@@ -25,7 +25,7 @@ public class ExternalServiceClient {
         HttpEntity<RequestAbleDto> requestEntity = new HttpEntity<>(requestDto, headers);
         try {
             ResponseEntity<T> exchange = restTemplate.exchange(
-                    "http://localhost:8081/calculator" + url,
+                    "http://calculator:8081/calculator" + url,
                     HttpMethod.POST,
                     requestEntity,
                     responseType
