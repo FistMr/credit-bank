@@ -41,6 +41,7 @@ jobs:
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ${{ matrix.project-path }}/target/site/jacoco/jacoco.xml
           flags: ${{ matrix.project-path }}
           name: ${{ matrix.project-path }}
