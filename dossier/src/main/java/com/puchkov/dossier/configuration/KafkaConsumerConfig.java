@@ -39,10 +39,8 @@ public class KafkaConsumerConfig {
 
     @PostConstruct
     public void printBootstrapServers() {
-        // Вывод значения из @Value
         System.out.println("Kafka Bootstrap Servers from @Value: " + bootstrapServers);
 
-        // Вывод значения из Environment
         System.out.println("Kafka Bootstrap Servers from Environment: " + env.getProperty("spring.kafka.consumer.bootstrap-servers"));
     }
 
