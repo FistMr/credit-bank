@@ -11,13 +11,13 @@ spring:
     hibernate:
       ddl-auto: validate
   datasource:
-    url: jdbc:postgresql://localhost:5432/credit_bank_DB
+    url: jdbc:postgresql://postgres-credit-bank:5432/credit_bank_DB
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver
   kafka:
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: kafka:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 server:

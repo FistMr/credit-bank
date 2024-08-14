@@ -24,18 +24,18 @@ public class StatementServiceImpl implements StatementService {
     @Override
     public List<LoanOfferDto> getOfferList(LoanStatementRequestDto loanStatementRequestDto) {
         ResponseEntity<List<LoanOfferDto>> responseEntity;
-        responseEntity = externalServiceClient.getResponse(loanStatementRequestDto, "http://localhost:8083/statement", new ParameterizedTypeReference<>() {
+        responseEntity = externalServiceClient.getResponse(loanStatementRequestDto, "http://statement:8083/statement", new ParameterizedTypeReference<>() {
         });
         return responseEntity.getBody();
     }
 
     @Override
     public void getCreditDto(LoanOfferDto loanOfferDto) {
-        externalServiceClient.sendRequest(loanOfferDto, "http://localhost:8083/statement/offer");
+        externalServiceClient.sendRequest(loanOfferDto, "http://statement:8083/statement/offer");
     }
 
     @Override
     public void saveCredit(FinishRegistrationRequestDto finishRegistrationRequestDto, UUID uuid) {
-        externalServiceClient.sendRequest(finishRegistrationRequestDto, "http://localhost:8082/deal/calculate/" + uuid);
+        externalServiceClient.sendRequest(finishRegistrationRequestDto, "http://deal:8082/deal/calculate/" + uuid);
     }
 }

@@ -43,7 +43,7 @@ class ExternalServiceClientTest {
         externalServiceClient.sendRequest(requestDto, "/offer/select");
 
         ArgumentCaptor<HttpEntity<RequestAbleDto>> requestCaptor = ArgumentCaptor.forClass(HttpEntity.class);
-        verify(restTemplate, times(1)).postForLocation(eq("http://localhost:8082/deal" + "/offer/select"), requestCaptor.capture());
+        verify(restTemplate, times(1)).postForLocation(eq("http://deal:8082/deal" + "/offer/select"), requestCaptor.capture());
         assertEquals(requestDto, requestCaptor.getValue().getBody());
     }
 
@@ -84,7 +84,7 @@ class ExternalServiceClientTest {
         ResponseEntity<List<LoanOfferDto>> expectedResponse = new ResponseEntity<>(responseBody, HttpStatus.OK);
 
         when(restTemplate.exchange(
-                eq("http://localhost:8082/deal" + "/statement"),
+                eq("http://deal:8082/deal" + "/statement"),
                 eq(HttpMethod.POST),
                 any(HttpEntity.class),
                 any(ParameterizedTypeReference.class))

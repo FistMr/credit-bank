@@ -3,9 +3,9 @@ spring:
     name: dossier
   kafka:
     consumer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: kafka:9092
   mail:
-    username: apps email
-    password: ???? ???? ???? ????
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
 server:
   port: 8084
